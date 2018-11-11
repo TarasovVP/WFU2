@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="DeepSkyBlue">#00BFFF</color>
+    <color name="RoyalBlue">#4169E1</color>
+    <color name="LightSeaGreen">#20B2AA</color>
+    <color name="Goldenrod">#DAA520</color>
+    <color name="LDarkGoldenRod">#B8860B</color>
+    <color name="Purple">#4b1062</color>
+    <color name="DarkPurple">#280834</color>
+    <color name="White">#ffffff</color>
+    <color name="LightPurple">#9156a2</color>
+</resources>
