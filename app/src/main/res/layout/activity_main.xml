@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout1"
     android:layout_width="match_parent"
@@ -17,50 +18,57 @@
 
         <TextView
             android:id="@+id/date"
-            android:text="11 ноября 2018\n17:30"
-            android:layout_width="72dp"
-            android:layout_height="40dp"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
             android:layout_above="@+id/city"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginStart="147dp"
-            android:layout_marginLeft="147dp"
-            android:layout_marginBottom="-82dp" />
+            android:layout_marginStart="124dp"
+            android:layout_marginLeft="124dp"
+            android:layout_marginBottom="-105dp"
+            android:text="@string/_11_2018_n17_30"
+            android:textColor="@color/White" />
 
         <TextView
             android:id="@+id/city"
-            android:text="Днепр"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="126dp"
-            android:layout_marginLeft="126dp"
-            android:layout_marginTop="37dp" />
+            android:layout_marginStart="145dp"
+            android:layout_marginLeft="145dp"
+            android:layout_marginTop="26dp"
+            android:text="@string/city"
+            android:textColor="@color/White"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/temperature"
-            android:text="-3"
             android:layout_width="76dp"
             android:layout_height="37dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="145dp"
-            android:layout_marginLeft="145dp"
-            android:layout_marginTop="107dp" />
+            android:layout_marginStart="153dp"
+            android:layout_marginLeft="153dp"
+            android:layout_marginTop="115dp"
+            android:text="@string/_3"
+            android:textColor="@color/White"
+            android:textSize="36sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="-58dp"
-            android:layout_marginBottom="226dp"
-            android:layout_toEndOf="@+id/date"
-            android:layout_marginLeft="-58dp"
-            android:layout_toRightOf="@+id/date" />
+            android:layout_marginStart="151dp"
+            android:layout_marginLeft="151dp"
+            android:layout_marginBottom="210dp" />
     </RelativeLayout>
 
     <TableLayout
@@ -74,7 +82,7 @@
         <TableLayout
             android:id="@+id/Hours1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="34dp"
             android:layout_weight="1"
             android:background="@color/DarkPurple"
             android:orientation="horizontal"
@@ -85,19 +93,19 @@
                 android:id="@+id/tempHour1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="-3" />
+                android:text="@string/_3" />
 
             <TextView
                 android:id="@+id/cloudHour1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Облачно" />
+                android:text="@string/cloud" />
 
             <TextView
                 android:id="@+id/Hour1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="12" />
+                android:text="@string/_12" />
         </TableLayout>
 
         <TableRow
@@ -110,19 +118,19 @@
 
             <TextView
                 android:id="@+id/tempHour2"
-                android:text="+2"
+                android:text="@string/_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/cloudHour2"
-                android:text="Облачно"
+                android:text="@string/cloud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/Hour2"
-                android:text="13"
+                android:text="@string/_13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </TableRow>
@@ -141,19 +149,19 @@
                 android:id="@+id/tempHour3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+3" />
+                android:text="@string/_3_" />
 
             <TextView
                 android:id="@+id/cloudHour3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Облачно" />
+                android:text="@string/cloud" />
 
             <TextView
                 android:id="@+id/Hour3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="14" />
+                android:text="@string/_14" />
         </TableRow>
 
         <TableRow
@@ -166,19 +174,19 @@
 
             <TextView
                 android:id="@+id/tempHour4"
-                android:text="-1"
+                android:text="@string/_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/cloudHour4"
-                android:text="Облачно"
+                android:text="@string/cloud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/Hour4"
-                android:text="15"
+                android:text="@string/_15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </TableRow>
@@ -193,19 +201,19 @@
 
             <TextView
                 android:id="@+id/tempHour5"
-                android:text="0"
+                android:text="@string/_0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/cloudHour5"
-                android:text="Облачно"
+                android:text="@string/cloud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/Hour5"
-                android:text="16"
+                android:text="@string/_16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </TableRow>
@@ -220,19 +228,19 @@
 
             <TextView
                 android:id="@+id/tempHour6"
-                android:text="+1"
+                android:text="@string/_1_"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/cloudHour6"
-                android:text="Облачно"
+                android:text="@string/cloud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/Hour6"
-                android:text="17"
+                android:text="@string/_17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </TableRow>

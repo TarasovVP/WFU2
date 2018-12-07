@@ -1,4 +1,25 @@
 <resources>
     <string name="app_name">WFU2</string>
     <string name="title_activity_start">StartActivity</string>
+    <string name="_11_2018_n17_30">11 ноября 2018 17:30</string>
+    <string name="city">Днепр</string>
+    <string name="_3">-3</string>
+    <string name="_3__">-3</string>
+    <string name="cloud">Облачно</string>
+    <string name="_12">12</string>
+    <string name="_2">+2</string>
+    <string name="cloud1">Облачно</string>
+    <string name="_13">13</string>
+    <string name="_3_">+3</string>
+    <string name="cloud2">Облачно</string>
+    <string name="_14">14</string>
+    <string name="_1">-1</string>
+    <string name="cloud3">Облачно</string>
+    <string name="_15">15</string>
+    <string name="_0">0</string>
+    <string name="cloud4">Облачно</string>
+    <string name="_16">16</string>
+    <string name="_1_">+1</string>
+    <string name="cloud5">Облачно</string>
+    <string name="_17">17</string>
 </resources>
