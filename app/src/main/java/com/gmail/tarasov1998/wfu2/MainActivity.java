@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        //Log.d(TAG, "Определяем кнопку");
         switch (v.getId()) {
             case R.id.back:
                 Intent intent = new Intent(this, StartActivity.class);
