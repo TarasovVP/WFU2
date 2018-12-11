@@ -1,45 +1,78 @@
 package com.gmail.tarasov1998.wfu2;
 
-import android.content.Context;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 public class GetWeathear {
-    private static final String OPEN_WEATHER_MAP_API =
-            "http://api.openweathermap.org/data/2.5/weather?q=Dnipro&APPID=824dca49c6fce4716e4f85bf1e4e60e6";
 
-    public static JSONObject getJSON(Context context, String city){
-        try {
-            URL url = new URL(String.format(OPEN_WEATHER_MAP_API, city));
-            HttpURLConnection connection =
-                    (HttpURLConnection)url.openConnection();
+    public static Weather getWeather(String data) throws JSONException {
+        Weather weather = new Weather();
 
-            connection.addRequestProperty("x-api-key",
-                    context.getString(R.string.open_weather_maps_app_id));
+        // We create out JSONObject from the data
+        JSONObject jObj = new JSONObject(data);
 
-            BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(connection.getInputStream()));
+        // We start extracting the info
+        Location loc = new Location();
 
-            StringBuffer json = new StringBuffer(1024);
-            String tmp="";
-            while((tmp=reader.readLine())!=null)
-                json.append(tmp).append("\n");
-            reader.close();
+        JSONObject coordObj = getObject("coord", jObj);
+        loc.setLatitude(getFloat("lat", coordObj));
+        loc.setLongitude(getFloat("lon", coordObj));
 
-            JSONObject data = new JSONObject(json.toString());
+        JSONObject sysObj = getObject("sys", jObj);
+        loc.setCountry(getString("country", sysObj));
+        loc.setSunrise(getInt("sunrise", sysObj));
+        loc.setSunset(getInt("sunset", sysObj));
+        loc.setCity(getString("name", jObj));
+        weather.location = loc;
 
-            if(data.getInt("cod") != 200){
-                return null;
-            }
+        // We get weather info (This is an array)
+        JSONArray jArr = jObj.getJSONArray("weather");
 
-            return data;
-        }catch(Exception e){
-            return null;
-        }
+        // We use only the first value
+        JSONObject JSONWeather = jArr.getJSONObject(0);
+        weather.currentCondition.setWeatherId(getInt("id", JSONWeather));
+        weather.currentCondition.setDescr(getString("description", JSONWeather));
+        weather.currentCondition.setCondition(getString("main", JSONWeather));
+        weather.currentCondition.setIcon(getString("icon", JSONWeather));
+
+        JSONObject mainObj = getObject("main", jObj);
+        weather.currentCondition.setHumidity(getInt("humidity", mainObj));
+        weather.currentCondition.setPressure(getInt("pressure", mainObj));
+        weather.temperature.setMaxTemp(getFloat("temp_max", mainObj));
+        weather.temperature.setMinTemp(getFloat("temp_min", mainObj));
+        weather.temperature.setTemp(getFloat("temp", mainObj));
+
+        // Wind
+        JSONObject wObj = getObject("wind", jObj);
+        weather.wind.setSpeed(getFloat("speed", wObj));
+        weather.wind.setDeg(getFloat("deg", wObj));
+
+        // Clouds
+        JSONObject cObj = getObject("clouds", jObj);
+        weather.clouds.setPerc(getInt("all", cObj));
+
+        // We download the icon to show
+
+
+        return weather;
     }
+
+    private static JSONObject getObject(String tagName, JSONObject jObj)  throws JSONException {
+        JSONObject subObj = jObj.getJSONObject(tagName);
+        return subObj;
+    }
+
+    private static String getString(String tagName, JSONObject jObj) throws JSONException {
+        return jObj.getString(tagName);
+    }
+
+    private static float  getFloat(String tagName, JSONObject jObj) throws JSONException {
+        return (float) jObj.getDouble(tagName);
+    }
+
+    private static int  getInt(String tagName, JSONObject jObj) throws JSONException {
+        return jObj.getInt(tagName);
+    }
+
 }
