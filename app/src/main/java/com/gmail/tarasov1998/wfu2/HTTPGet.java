@@ -17,7 +17,7 @@ public class HTTPGet {
         InputStream is = null;
 
         try {
-            con = (HttpURLConnection) ( new URL(BASE_URL + location)).openConnection();
+            con = (HttpURLConnection) ( new URL(BASE_URL + location+"&APPID=824dca49c6fce4716e4f85bf1e4e60e6")).openConnection();
             con.setRequestMethod("GET");
             con.setDoInput(true);
             con.setDoOutput(true);

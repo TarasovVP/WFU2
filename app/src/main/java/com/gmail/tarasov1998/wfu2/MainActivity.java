@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView press;
     private TextView windSpeed;
     private TextView windDeg;
-    String city = "Rome,IT";
+    String city = "Dnipro,UA";
 
     private TextView hum;
     private ImageView imgView;
