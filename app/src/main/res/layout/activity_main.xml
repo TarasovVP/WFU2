@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -17,18 +18,17 @@
             android:id="@+id/date"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/city"
+            android:layout_above="@+id/cityShow"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_marginStart="122dp"
             android:layout_marginLeft="122dp"
             android:layout_marginBottom="-104dp"
             android:gravity="center_horizontal"
-            android:text="@string/_11_2018_n17_30"
             android:textColor="@color/White" />
 
         <TextView
-            android:id="@+id/city"
+            android:id="@+id/cityShow"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -38,7 +38,6 @@
             android:layout_marginLeft="145dp"
             android:layout_marginTop="26dp"
             android:gravity="center_horizontal"
-            android:text="@string/city"
             android:textColor="@color/White"
             android:textSize="30sp"
             android:textStyle="bold" />

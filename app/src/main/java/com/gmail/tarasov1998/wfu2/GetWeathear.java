@@ -9,10 +9,8 @@ public class GetWeathear {
     public static Weather getWeather(String data) throws JSONException {
         Weather weather = new Weather();
 
-        // We create out JSONObject from the data
         JSONObject jObj = new JSONObject(data);
 
-        // We start extracting the info
         Location loc = new Location();
 
         JSONObject coordObj = getObject("coord", jObj);
@@ -26,10 +24,9 @@ public class GetWeathear {
         loc.setCity(getString("name", jObj));
         weather.location = loc;
 
-        // We get weather info (This is an array)
         JSONArray jArr = jObj.getJSONArray("weather");
 
-        // We use only the first value
+
         JSONObject JSONWeather = jArr.getJSONObject(0);
         weather.currentCondition.setWeatherId(getInt("id", JSONWeather));
         weather.currentCondition.setDescr(getString("description", JSONWeather));
@@ -43,16 +40,15 @@ public class GetWeathear {
         weather.temperature.setMinTemp(getFloat("temp_min", mainObj));
         weather.temperature.setTemp(getFloat("temp", mainObj));
 
-        // Wind
+
         JSONObject wObj = getObject("wind", jObj);
         weather.wind.setSpeed(getFloat("speed", wObj));
         weather.wind.setDeg(getFloat("deg", wObj));
 
-        // Clouds
+
         JSONObject cObj = getObject("clouds", jObj);
         weather.clouds.setPerc(getInt("all", cObj));
 
-        // We download the icon to show
 
 
         return weather;
