@@ -7,82 +7,60 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@color/Purple">
-
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/cityShow"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginStart="122dp"
-            android:layout_marginLeft="122dp"
-            android:layout_marginBottom="-104dp"
-            android:gravity="center_horizontal"
-            android:textColor="@color/White" />
+        android:background="@color/Purple"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/cityShow"
-            android:layout_width="115dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="145dp"
-            android:layout_marginLeft="145dp"
-            android:layout_marginTop="26dp"
             android:gravity="center_horizontal"
             android:textColor="@color/White"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_margin="15dp"/>
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@color/White"
+            android:layout_margin="15dp"/>
 
         <TextView
             android:id="@+id/temperature"
-            android:layout_width="76dp"
-            android:layout_height="37dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginStart="157dp"
-            android:layout_marginLeft="157dp"
-            android:layout_marginTop="124dp"
-            android:layout_marginEnd="151dp"
-            android:layout_marginRight="151dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/_3"
             android:textColor="@color/White"
             android:textSize="36sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_margin="15dp"/>
 
         <ImageView
             android:id="@+id/cloudy"
-            android:layout_width="106dp"
-            android:layout_height="102dp"
-            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="101dp"
             android:contentDescription="TODO"
-            android:src="@drawable/sun" />
+            android:src="@drawable/sun"
+            android:layout_margin="15dp"/>
 
         <Button
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="144dp"
-            android:layout_marginLeft="144dp"
-            android:layout_marginBottom="42dp" />
-    </RelativeLayout>
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="15dp"/>
+    </LinearLayout>
 
 
 <TableLayout

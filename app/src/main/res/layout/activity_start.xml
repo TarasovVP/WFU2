@@ -45,8 +45,3 @@
         android:textColorLink="@color/White"
         tools:style="@style/Widget.AppCompat.Button.Borderless.Colored" />
 </RelativeLayout>
-
-
-
-
-

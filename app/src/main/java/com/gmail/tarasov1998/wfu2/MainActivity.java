@@ -22,7 +22,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView temperature;
     private TextView dateTime;
 
-    String city = "Dnipro,UA";
+    String city = "Dnipro";
+    String country = "UA";
 
     DateTime nowDateTime = new DateTime();
     LocalDateTime nowDT = nowDateTime.withZone(DateTimeZone.UTC).toLocalDateTime();
@@ -43,19 +44,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         JSONWeatherTask task = new JSONWeatherTask();
-        task.execute(new String[]{city});
+        task.execute(new String[]{city+","+country});
 
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.back:
-                Intent intent = new Intent(this, StartActivity.class);
-                startActivity(intent);
-                break;
+                Intent intent = new Intent(this, ActivityStart.class);
+                startActivityForResult(intent, 1);
 
         }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data == null) {return;}
+        String nameCity = data.getStringExtra("city");
     }
 
     @Override
@@ -95,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         protected void onPostExecute(Weather weather) {
             super.onPostExecute(weather);
 
-            cityShow.setText(weather.location.getCity());
+            cityShow.setText(Location.getCity());
             temperature.setText("" + Math.round((weather.temperature.getTemp() - 273.15)));
             dateTime.setText(nowDT.toString("dd MMMM yyyy \n HH:mm"));
 
