@@ -17,70 +17,46 @@ import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDateTime;
 import org.json.JSONException;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+public class MainActivity extends AppCompatActivity {
 
     private TextView cityShow;
     private TextView temperature;
     private TextView dateTime;
-    private TextView txtWeather;
 
     private ImageView mainWeather;
+
 
     String city = "Dnipro";
     String country = "UA";
 
-    DateTime nowDateTime = new DateTime();
-    LocalDateTime nowDT = nowDateTime.withZone(DateTimeZone.UTC).toLocalDateTime();
+    //Get local date and time
+    DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy \n HH:mm");
+    Calendar cal = Calendar.getInstance();
+    String date = dateFormat.format(cal.getTime());
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button back = (Button) findViewById(R.id.back);
-        back.setText("Возврат в главное меню");
+        //Set date and time in TextView
+        dateTime = (TextView) findViewById(R.id.date);
+        dateTime.setText(date);
 
-        back.setOnClickListener(this);
 
         cityShow = (TextView) findViewById(R.id.cityShow);
         temperature = (TextView) findViewById(R.id.temperature);
-        dateTime = (TextView) findViewById(R.id.date);
         mainWeather = (ImageView) findViewById(R.id.mainWeather);
-        txtWeather = (TextView) findViewById(R.id.txtWeather);
 
         JSONWeatherTask task = new JSONWeatherTask();
-        task.execute(new String[]{city+","+country});
+        task.execute(new String[]{city + "," + country});
 
     }
 
-    @Override
-    public void onClick(View v) {
-                Intent intent = new Intent(this, ActivityStart.class);
-                startActivityForResult(intent, 1);
-
-        }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (data == null) {return;}
-        String nameCity = data.getStringExtra("city");
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, 1, 1, "Город");
-        menu.add(0, 2, 2, "Дата");
-        menu.add(0, 3, 3, "Температура");
-        menu.add(0, 4, 4, "Время");
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-   @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Toast.makeText(this, item.getTitle(), Toast.LENGTH_LONG).show();
-        return super.onOptionsItemSelected(item);
-    }
 
     private class JSONWeatherTask extends AsyncTask<String, Void, Weather> {
 
@@ -99,55 +75,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return weather;
 
         }
+
         @Override
         protected void onPostExecute(Weather weather) {
             super.onPostExecute(weather);
 
-            cityShow.setText(Location.getCity());
-            temperature.setText("" + Math.round((weather.temperature.getTemp() - 273.15)));
-            dateTime.setText(nowDT.toString("dd MMMM yyyy \n HH:mm"));
-            txtWeather.setText(weather.mainWeather.getMainWeather());
-            mainWeather.setImageResource(choiseIconWeater(weather.mainWeather.getMainWeather()));
+                cityShow.setText(Location.getCity());
+                temperature.setText("" + Math.round((weather.temperature.getTemp() - 273.15)));
+                mainWeather.setImageResource(choiseIconWeather(weather.idWeather.getIdWeather()));
 
         }
+        public int choiseIconWeather(int getId) {
 
-    }
-
-    public int choiseIconWeater(String getWeather){
-        int resID = 0;
-        switch (getWeather){
-            case ("clear sky"):
+            int resID = 0;
+            if (getId == 800) {
                 resID = R.drawable.clearsky;
-                break;
-            case ("few clouds"):
+            } else if (getId == 801) {
                 resID = R.drawable.fewclouds;
-                break;
-            case ("scattered clouds "):
-                resID = R.drawable.scatteredclouds ;
-                break;
-            case ("broken clouds"):
-                resID = R.drawable.brokenclouds ;
-                break;
-            case ("shower rain "):
-                resID = R.drawable.showerrain ;
-                break;
-            case ("rain"):
+            }else if (getId == 802) {
+                resID = R.drawable.scatteredclouds;
+            }else if (getId == 803 || getId == 804) {
+                resID = R.drawable.brokenclouds;
+            }else if (getId%100 == 2 || getId == 520 || getId == 521 || getId == 522 || getId == 531) {
+                resID = R.drawable.showerrain;
+            }else if (getId == 500 || getId == 501 || getId == 502 || getId == 503|| getId == 504) {
                 resID = R.drawable.rain;
-                break;
-            case ("thunderstorm"):
+            }else if (getId%100 == 2) {
                 resID = R.drawable.thunderstorm;
-                break;
-            case ("snow"):
+            }else if (getId%100 == 6) {
                 resID = R.drawable.snow;
-                break;
-            case ("mist"):
+            }else if (getId%100 == 7) {
                 resID = R.drawable.mist;
-                break;
-            default:
+            }else {
                 resID = R.drawable.questionmark;
-                break;
-        }return resID;
+            }return resID;
     }
 
 
-            }
+    }
+
+
+}

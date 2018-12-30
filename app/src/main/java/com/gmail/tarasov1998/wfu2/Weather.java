@@ -4,6 +4,7 @@ public class Weather {
     public Location location;
     Temperature temperature = new Temperature();
     MainWeather mainWeather = new MainWeather();
+    IdWeather idWeather = new IdWeather();
 
     public class Temperature {
         private float temp;
@@ -30,6 +31,17 @@ public class Weather {
             this.mainWeather = mWeather;
         }
 
+
+    }
+    public class IdWeather {
+        private int idWeather;
+
+        public int getIdWeather() {
+            return idWeather;
+        }
+        public void setIdWeather(int idWeather) {
+            this.idWeather = idWeather;
+        }
 
     }
 

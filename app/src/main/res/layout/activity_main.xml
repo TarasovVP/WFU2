@@ -11,7 +11,7 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="1.5"
         android:background="@color/Purple"
         android:orientation="vertical">
 
@@ -19,57 +19,41 @@
             android:id="@+id/cityShow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="15dp"
             android:gravity="center_horizontal"
             android:textColor="@color/White"
             android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_margin="15dp"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="15dp"
             android:gravity="center_horizontal"
             android:textColor="@color/White"
-            android:layout_margin="15dp"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/temperature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="15dp"
             android:gravity="center_horizontal"
             android:text="@string/_3"
             android:textColor="@color/White"
             android:textSize="36sp"
-            android:textStyle="bold"
-            android:layout_margin="15dp"/>
-        <TextView
-            android:id="@+id/txtWeather"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/_3"
-            android:textColor="@color/White"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            android:layout_margin="15dp"/>
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/mainWeather"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_margin="15dp"
             android:contentDescription="TODO"
-            android:src="@drawable/clearsky"
-            android:layout_margin="15dp"/>
+            android:src="@drawable/clearsky" />
 
-        <Button
-            android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="15dp"/>
     </LinearLayout>
 
 

@@ -16,8 +16,9 @@ public class GetWeathear {
         weather.location = loc;
 
         JSONArray jArr = jObj.getJSONArray("weather");
-        JSONObject mainWeather = jArr.getJSONObject(0);
-        weather.mainWeather.setMainWeather(getString("main", mainWeather));
+        JSONObject mWeather = jArr.getJSONObject(0);
+        weather.mainWeather.setMainWeather(getString("main", mWeather));
+        weather.idWeather.setIdWeather(getInt("id", mWeather));
 
 
         JSONObject mainObj = getObject("main", jObj);
@@ -38,5 +39,8 @@ public class GetWeathear {
 
     private static float  getFloat(String tagName, JSONObject jObj) throws JSONException {
         return (float) jObj.getDouble(tagName);
+    }
+    private static int  getInt(String tagName, JSONObject jObj) throws JSONException {
+        return (int) jObj.getInt(tagName);
     }
 }
