@@ -43,14 +43,24 @@
             android:textSize="36sp"
             android:textStyle="bold"
             android:layout_margin="15dp"/>
+        <TextView
+            android:id="@+id/txtWeather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/_3"
+            android:textColor="@color/White"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:layout_margin="15dp"/>
 
         <ImageView
-            android:id="@+id/cloudy"
+            android:id="@+id/mainWeather"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:contentDescription="TODO"
-            android:src="@drawable/sun"
+            android:src="@drawable/clearsky"
             android:layout_margin="15dp"/>
 
         <Button
@@ -129,36 +139,36 @@ android:shrinkColumns="*">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="TODO"
-        android:src="@drawable/cloud" />
+        android:src="@drawable/scatteredclouds" />
 
     <ImageView
         android:id="@+id/cloudHour2"
         android:layout_width="86dp"
         android:layout_height="98dp"
         android:contentDescription="TODO"
-        android:src="@drawable/cloudy" />
+        android:src="@drawable/brokenclouds" />
 
     <ImageView
         android:id="@+id/cloudHour3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/lightcloudy"
+        android:src="@drawable/fewclouds"
         android:contentDescription="TODO" />
 
     <ImageView
         android:id="@+id/cloudHour4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/flash"
+        android:src="@drawable/thunderstorm"
         android:contentDescription="TODO" />
 
     <ImageView
         android:id="@+id/cloudHour5"
-        android:src="@drawable/rain" />
+        android:src="@drawable/showerrain" />
 
     <ImageView
         android:id="@+id/cloudHour6"
-        android:src="@drawable/sun"
+        android:src="@drawable/clearsky"
         android:contentDescription="TODO" />
 
 

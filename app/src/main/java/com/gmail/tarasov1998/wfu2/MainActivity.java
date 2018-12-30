@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView cityShow;
     private TextView temperature;
     private TextView dateTime;
+    private TextView txtWeather;
+
+    private ImageView mainWeather;
 
     String city = "Dnipro";
     String country = "UA";
@@ -41,7 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cityShow = (TextView) findViewById(R.id.cityShow);
         temperature = (TextView) findViewById(R.id.temperature);
         dateTime = (TextView) findViewById(R.id.date);
-
+        mainWeather = (ImageView) findViewById(R.id.mainWeather);
+        txtWeather = (TextView) findViewById(R.id.txtWeather);
 
         JSONWeatherTask task = new JSONWeatherTask();
         task.execute(new String[]{city+","+country});
@@ -101,10 +106,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             cityShow.setText(Location.getCity());
             temperature.setText("" + Math.round((weather.temperature.getTemp() - 273.15)));
             dateTime.setText(nowDT.toString("dd MMMM yyyy \n HH:mm"));
+            txtWeather.setText(weather.mainWeather.getMainWeather());
+            mainWeather.setImageResource(choiseIconWeater(weather.mainWeather.getMainWeather()));
 
         }
 
     }
 
+    public int choiseIconWeater(String getWeather){
+        int resID = 0;
+        switch (getWeather){
+            case ("clear sky"):
+                resID = R.drawable.clearsky;
+                break;
+            case ("few clouds"):
+                resID = R.drawable.fewclouds;
+                break;
+            case ("scattered clouds "):
+                resID = R.drawable.scatteredclouds ;
+                break;
+            case ("broken clouds"):
+                resID = R.drawable.brokenclouds ;
+                break;
+            case ("shower rain "):
+                resID = R.drawable.showerrain ;
+                break;
+            case ("rain"):
+                resID = R.drawable.rain;
+                break;
+            case ("thunderstorm"):
+                resID = R.drawable.thunderstorm;
+                break;
+            case ("snow"):
+                resID = R.drawable.snow;
+                break;
+            case ("mist"):
+                resID = R.drawable.mist;
+                break;
+            default:
+                resID = R.drawable.questionmark;
+                break;
+        }return resID;
+    }
 
-}
+
+            }

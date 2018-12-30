@@ -1,0 +1,48 @@
+{
+  "coord": {
+    "lon": 35.04,
+    "lat": 48.47
+  },
+  "weather": [
+    {
+      "id": 600,
+      "main": "Snow",
+      "description": "light snow",
+      "icon": "13n"
+    },
+    {
+      "id": 701,
+      "main": "Mist",
+      "description": "mist",
+      "icon": "50n"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 273.15,
+    "pressure": 1012,
+    "humidity": 99,
+    "temp_min": 273.15,
+    "temp_max": 273.15
+  },
+  "visibility": 2300,
+  "wind": {
+    "speed": 3,
+    "deg": 180
+  },
+  "clouds": {
+    "all": 90
+  },
+  "dt": 1546027200,
+  "sys": {
+    "type": 1,
+    "id": 8901,
+    "message": 0.0022,
+    "country": "UA",
+    "sunrise": 1545975085,
+    "sunset": 1546005129
+  },
+  "id": 709930,
+  "name": "Dnipro",
+  "cod": 200
+}
