@@ -12,17 +12,18 @@ public class GetWeathear {
         JSONObject jObj = new JSONObject(data);
 
         Location loc = new Location();
-        loc.setCity(getString("name", jObj));
-        weather.location = loc;
+        JSONObject locObj = jObj.getJSONObject("city");
+        loc.setCity(getString("name", locObj));
+        //weather.location = loc;
 
-        JSONArray jArr = jObj.getJSONArray("weather");
+        JSONArray jArr = jObj.getJSONArray("list");
         JSONObject mWeather = jArr.getJSONObject(0);
-        weather.mainWeather.setMainWeather(getString("main", mWeather));
-        weather.idWeather.setIdWeather(getInt("id", mWeather));
+        JSONArray jArr2 = mWeather.getJSONArray("weather");
+        JSONObject idWeather = jArr2.getJSONObject(0);
+        weather.setIdWeather(getInt("id", idWeather));
 
-
-        JSONObject mainObj = getObject("main", jObj);
-        weather.temperature.setTemp(getFloat("temp", mainObj));
+        JSONObject mainObj = getObject("main", mWeather);
+        weather.setTemp(getFloat("temp", mainObj));
 
 
         return weather;

@@ -74,39 +74,34 @@ android:shrinkColumns="*">
 
     <TextView
         android:gravity="center_horizontal"
-        android:id="@+id/tempHour1"
+        android:id="@+id/temp1"
         android:text="@string/_3"
         android:textColor="@color/White" />
 
     <TextView
         android:gravity="center_horizontal"
-        android:id="@+id/tempHour2"
+        android:id="@+id/temp2"
         android:text="@string/_2"
         android:textColor="@color/White" />
 
     <TextView
         android:gravity="center_horizontal"
-        android:id="@+id/tempHour3"
+        android:id="@+id/temp3"
         android:text="@string/_3_"
         android:textColor="@color/White" />
 
     <TextView
         android:gravity="center_horizontal"
-        android:id="@+id/tempHour4"
+        android:id="@+id/temp4"
         android:text="@string/_1"
         android:textColor="@color/White" />
 
     <TextView
         android:gravity="center_horizontal"
-        android:id="@+id/tempHour5"
+        android:id="@+id/temp5"
         android:text="@string/_0"
         android:textColor="@color/White" />
 
-    <TextView
-        android:gravity="center_horizontal"
-        android:id="@+id/tempHour6"
-        android:text="@string/_1_"
-        android:textColor="@color/White" />
 
 
 </TableRow>
@@ -119,41 +114,38 @@ android:shrinkColumns="*">
 
 
     <ImageView
-        android:id="@+id/cloudHour1"
+        android:id="@+id/weath1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="TODO"
         android:src="@drawable/scatteredclouds" />
 
     <ImageView
-        android:id="@+id/cloudHour2"
+        android:id="@+id/weath2"
         android:layout_width="86dp"
         android:layout_height="98dp"
         android:contentDescription="TODO"
         android:src="@drawable/brokenclouds" />
 
     <ImageView
-        android:id="@+id/cloudHour3"
+        android:id="@+id/weath3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/fewclouds"
         android:contentDescription="TODO" />
 
     <ImageView
-        android:id="@+id/cloudHour4"
+        android:id="@+id/weath4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/thunderstorm"
         android:contentDescription="TODO" />
 
     <ImageView
-        android:id="@+id/cloudHour5"
+        android:id="@+id/weath5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/showerrain" />
-
-    <ImageView
-        android:id="@+id/cloudHour6"
-        android:src="@drawable/clearsky"
-        android:contentDescription="TODO" />
 
 
 </TableRow>
@@ -166,41 +158,35 @@ android:shrinkColumns="*">
 
     <TextView
         android:gravity="center_horizontal"
-        android:id="@+id/Hour1"
+        android:id="@+id/date1"
         android:text="@string/_12"
         android:textColor="@color/White" />
 
     <TextView
         android:gravity="center_horizontal"
-        android:id="@+id/Hour2"
+        android:id="@+id/date2"
         android:text="@string/_13"
         android:textColor="@color/White" />
 
     <TextView
         android:gravity="center_horizontal"
-        android:id="@+id/Hour3"
+        android:id="@+id/date3"
         android:text="@string/_14"
         android:textColor="@color/White" />
 
     <TextView
         android:gravity="center_horizontal"
-        android:id="@+id/Hour4"
+        android:id="@+id/date4"
         android:text="@string/_15"
         android:textColor="@color/White" />
 
     <TextView
         android:gravity="center_horizontal"
-        android:id="@+id/Hour5"
+        android:id="@+id/date5"
         android:text="@string/_16"
         android:textColor="@color/White" />
 
-    <TextView
-        android:gravity="center_horizontal"
-        android:id="@+id/Hour6"
-        android:text="@string/_17"
-        android:textColor="@color/White" />
-
-</TableRow>
+ </TableRow>
 
 
 </TableLayout>
