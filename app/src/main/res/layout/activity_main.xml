@@ -122,8 +122,8 @@ android:shrinkColumns="*">
 
     <ImageView
         android:id="@+id/weath2"
-        android:layout_width="86dp"
-        android:layout_height="98dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:contentDescription="TODO"
         android:src="@drawable/brokenclouds" />
 
@@ -159,13 +159,13 @@ android:shrinkColumns="*">
     <TextView
         android:gravity="center_horizontal"
         android:id="@+id/date1"
-        android:text="@string/_12"
+        android:text="@string/_14"
         android:textColor="@color/White" />
 
     <TextView
         android:gravity="center_horizontal"
         android:id="@+id/date2"
-        android:text="@string/_13"
+        android:text="@string/_14"
         android:textColor="@color/White" />
 
     <TextView
@@ -177,13 +177,13 @@ android:shrinkColumns="*">
     <TextView
         android:gravity="center_horizontal"
         android:id="@+id/date4"
-        android:text="@string/_15"
+        android:text="@string/_14"
         android:textColor="@color/White" />
 
     <TextView
         android:gravity="center_horizontal"
         android:id="@+id/date5"
-        android:text="@string/_16"
+        android:text="@string/_14"
         android:textColor="@color/White" />
 
  </TableRow>

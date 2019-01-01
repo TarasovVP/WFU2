@@ -50,10 +50,8 @@ public class MainActivity extends AppCompatActivity {
     String city = "Dnipro";
     String country = "UA";
 
-    //Get local date and time
-    DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy \n HH:mm");
-    Calendar cal = Calendar.getInstance();
-    String date = dateFormat.format(cal.getTime());
+    LocalDateTime date = LocalDateTime.now();
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,7 +60,18 @@ public class MainActivity extends AppCompatActivity {
 
         //Set date and time in TextView
         dateTime = (TextView) findViewById(R.id.date);
-        dateTime.setText(date);
+        dateTime.setText(date.toString("dd MMMM yyyy \n HH:mm"));
+
+        date1 = (TextView) findViewById(R.id.date1);
+        date1.setText(date.plusHours(3).toString("HH:mm"));
+        date2 = (TextView) findViewById(R.id.date2);
+        date2.setText(date.plusHours(6).toString("HH:mm"));
+        date3 = (TextView) findViewById(R.id.date3);
+        date3.setText(date.plusHours(9).toString("HH:mm"));
+        date4 = (TextView) findViewById(R.id.date4);
+        date4.setText(date.plusHours(12).toString("HH:mm"));
+        date5 = (TextView) findViewById(R.id.date5);
+        date5.setText(date.plusHours(15).toString("HH:mm"));
 
 
         cityShow = (TextView) findViewById(R.id.cityShow);
@@ -81,11 +90,7 @@ public class MainActivity extends AppCompatActivity {
         weath4 = (ImageView) findViewById(R.id.weath4);
         weath5 = (ImageView) findViewById(R.id.weath5);
 
-        date1 = (TextView) findViewById(R.id.date1);
-        date2 = (TextView) findViewById(R.id.date2);
-        date3 = (TextView) findViewById(R.id.date3);
-        date4 = (TextView) findViewById(R.id.date4);
-        date5 = (TextView) findViewById(R.id.date5);
+
 
         JSONWeatherTask task = new JSONWeatherTask();
         task.execute(new String[]{city + "," + country});
@@ -116,38 +121,52 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(weather);
 
                 cityShow.setText(Location.getCity());
-                temperature.setText("" + Math.round((weather.getTemp() - 273.15)));
-                mainWeather.setImageResource(choiseIconWeather(weather.getIdWeather()));
+                temperature.setText("" + Math.round((weather.getTemp(0) - 273.15)));
+                mainWeather.setImageResource(choiseIconWeather(weather.getIdWeather(0)));
+
+            temp1.setText("" + Math.round((weather.getTemp(1) - 273.15)));
+            temp2.setText("" + Math.round((weather.getTemp(2) - 273.15)));
+            temp3.setText("" + Math.round((weather.getTemp(3) - 273.15)));
+            temp4.setText("" + Math.round((weather.getTemp(4) - 273.15)));
+            temp5.setText("" + Math.round((weather.getTemp(5) - 273.15)));
+
+
+
+            weath1.setImageResource(choiseIconWeather(weather.getIdWeather(1)));
+            weath2.setImageResource(choiseIconWeather(weather.getIdWeather(2)));
+            weath3.setImageResource(choiseIconWeather(weather.getIdWeather(3)));
+            weath4.setImageResource(choiseIconWeather(weather.getIdWeather(4)));
+            weath5.setImageResource(choiseIconWeather(weather.getIdWeather(5)));
 
         }
-        public int choiseIconWeather(int getId) {
 
-            int resID = 0;
-            if (getId == 800) {
-                resID = R.drawable.clearsky;
-            } else if (getId == 801) {
-                resID = R.drawable.fewclouds;
-            }else if (getId == 802) {
-                resID = R.drawable.scatteredclouds;
-            }else if (getId == 803 || getId == 804) {
-                resID = R.drawable.brokenclouds;
-            }else if (getId/100 == 2 || getId == 520 || getId == 521 || getId == 522 || getId == 531) {
-                resID = R.drawable.showerrain;
-            }else if (getId == 500 || getId == 501 || getId == 502 || getId == 503|| getId == 504) {
-                resID = R.drawable.rain;
-            }else if (getId/100 == 2) {
-                resID = R.drawable.thunderstorm;
-            }else if (getId/100 == 6) {
-                resID = R.drawable.snow;
-            }else if (getId/100 == 7) {
-                resID = R.drawable.mist;
-            }else {
-                resID = R.drawable.questionmark;
-            }return resID;
-    }
 
 
     }
+    public int choiseIconWeather(int getId) {
 
+        int resID = 0;
+        if (getId == 800) {
+            resID = R.drawable.clearsky;
+        } else if (getId == 801) {
+            resID = R.drawable.fewclouds;
+        }else if (getId == 802) {
+            resID = R.drawable.scatteredclouds;
+        }else if (getId == 803 || getId == 804) {
+            resID = R.drawable.brokenclouds;
+        }else if (getId/100 == 2 || getId == 520 || getId == 521 || getId == 522 || getId == 531) {
+            resID = R.drawable.showerrain;
+        }else if (getId == 500 || getId == 501 || getId == 502 || getId == 503|| getId == 504) {
+            resID = R.drawable.rain;
+        }else if (getId/100 == 2) {
+            resID = R.drawable.thunderstorm;
+        }else if (getId/100 == 6) {
+            resID = R.drawable.snow;
+        }else if (getId/100 == 7) {
+            resID = R.drawable.mist;
+        }else {
+            resID = R.drawable.questionmark;
+        }return resID;
+    }
 
 }

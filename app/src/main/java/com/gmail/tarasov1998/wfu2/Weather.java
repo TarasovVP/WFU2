@@ -1,25 +1,30 @@
 package com.gmail.tarasov1998.wfu2;
 
+import java.util.ArrayList;
+
 public class Weather {
-    private int idWeather;
-    private float temp;
+
+    private ArrayList<Float> listTemp = new ArrayList<>();
+    private ArrayList<Integer> listId = new ArrayList<>();
 
 
-    public int getIdWeather() {
-        return idWeather;
+
+    public int getIdWeather(int index) {
+
+        return listId.get(index);
     }
+
     public void setIdWeather(int idWeather) {
-        this.idWeather = idWeather;
+        listId.add(idWeather);
     }
-    public float getTemp() {
-        return temp;
+
+    public float getTemp(int index) {
+        return listTemp.get(index);
     }
 
     public void setTemp(float temp) {
-        this.temp = temp;
+        listTemp.add(temp);
     }
-
-
 
 
 }
