@@ -28,6 +28,7 @@
         android:autofillHints=""
         android:background="@color/White"
         android:hint="Введите название"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZабвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯҐґЄєІіЇї'- "
         android:inputType=""
         tools:targetApi="o"
         tools:textSize="18sp" />

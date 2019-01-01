@@ -26,9 +26,8 @@ public class ActivityStart extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent();
-        intent.putExtra("name", editText.getText().toString());
-        setResult(RESULT_OK, intent);
-        finish();
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("city", editText.getText().toString());
+        startActivity(intent);
     }
 }

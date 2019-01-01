@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView date4;
     private TextView date5;
 
-    String city = "Dnipro";
-    String country = "UA";
+    //String city = "Dnipro";
+    //String country = "UA";
 
     LocalDateTime date = LocalDateTime.now();
 
@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        String city = intent.getStringExtra("city");
 
         //Set date and time in TextView
         dateTime = (TextView) findViewById(R.id.date);
@@ -93,10 +96,22 @@ public class MainActivity extends AppCompatActivity {
 
 
         JSONWeatherTask task = new JSONWeatherTask();
-        task.execute(new String[]{city + "," + country});
+        task.execute(new String[]{city});
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(0, 1, 0, "Выбрать город");
 
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = new Intent(this, ActivityStart.class);
+        startActivity(intent);
+
+        return super.onOptionsItemSelected(item);
+    }
 
     private class JSONWeatherTask extends AsyncTask<String, Void, Weather> {
 
@@ -109,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
                 weather = GetWeathear.getWeather(data);
 
 
+            } catch (NullPointerException e) {
+                System.out.println("Wrong city");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
