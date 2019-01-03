@@ -51,8 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_margin="15dp"
-            android:contentDescription="TODO"
-            android:src="@drawable/clearsky" />
+            android:contentDescription="TODO" />
 
     </LinearLayout>
 
@@ -123,35 +122,30 @@
                 android:id="@+id/weath1"
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
-                android:contentDescription="TODO"
-                android:src="@drawable/scatteredclouds" />
+                android:contentDescription="TODO" />
 
             <ImageView
                 android:id="@+id/weath2"
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
-                android:contentDescription="TODO"
-                android:src="@drawable/brokenclouds" />
+                android:contentDescription="TODO" />
 
             <ImageView
                 android:id="@+id/weath3"
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
-                android:contentDescription="TODO"
-                android:src="@drawable/fewclouds" />
+                android:contentDescription="TODO" />
 
             <ImageView
                 android:id="@+id/weath4"
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
-                android:contentDescription="TODO"
-                android:src="@drawable/thunderstorm" />
+                android:contentDescription="TODO" />
 
             <ImageView
                 android:id="@+id/weath5"
                 android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:src="@drawable/showerrain" />
+                android:layout_height="100dp" />
 
 
         </TableRow>

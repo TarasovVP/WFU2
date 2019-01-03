@@ -2,24 +2,15 @@ package com.gmail.tarasov1998.wfu2;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDateTime;
 import org.json.JSONException;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -94,11 +85,11 @@ public class MainActivity extends AppCompatActivity {
         weath5 = (ImageView) findViewById(R.id.weath5);
 
 
-
         JSONWeatherTask task = new JSONWeatherTask();
         task.execute(new String[]{city});
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(0, 1, 0, "Выбрать город");
@@ -137,9 +128,9 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Weather weather) {
             super.onPostExecute(weather);
 
-                cityShow.setText(Location.getCity());
-                temperature.setText("" + Math.round((weather.getTemp(0) - 273.15)));
-                mainWeather.setImageResource(choiseIconWeather(weather.getIdWeather(0)));
+            cityShow.setText(Location.getCity());
+            temperature.setText("" + Math.round((weather.getTemp(0) - 273.15)));
+            mainWeather.setImageResource(choiseIconWeather(weather.getIcon(0)));
 
             temp1.setText("" + Math.round((weather.getTemp(1) - 273.15)));
             temp2.setText("" + Math.round((weather.getTemp(2) - 273.15)));
@@ -148,42 +139,75 @@ public class MainActivity extends AppCompatActivity {
             temp5.setText("" + Math.round((weather.getTemp(5) - 273.15)));
 
 
-
-            weath1.setImageResource(choiseIconWeather(weather.getIdWeather(1)));
-            weath2.setImageResource(choiseIconWeather(weather.getIdWeather(2)));
-            weath3.setImageResource(choiseIconWeather(weather.getIdWeather(3)));
-            weath4.setImageResource(choiseIconWeather(weather.getIdWeather(4)));
-            weath5.setImageResource(choiseIconWeather(weather.getIdWeather(5)));
+            weath1.setImageResource(choiseIconWeather(weather.getIcon(1)));
+            weath2.setImageResource(choiseIconWeather(weather.getIcon(2)));
+            weath3.setImageResource(choiseIconWeather(weather.getIcon(3)));
+            weath4.setImageResource(choiseIconWeather(weather.getIcon(4)));
+            weath5.setImageResource(choiseIconWeather(weather.getIcon(5)));
 
         }
 
 
-
-    }
-    public int choiseIconWeather(int getId) {
-
-        int resID = 0;
-        if (getId == 800) {
-            resID = R.drawable.clearsky;
-        } else if (getId == 801) {
-            resID = R.drawable.fewclouds;
-        }else if (getId == 802) {
-            resID = R.drawable.scatteredclouds;
-        }else if (getId == 803 || getId == 804) {
-            resID = R.drawable.brokenclouds;
-        }else if (getId/100 == 2 || getId == 520 || getId == 521 || getId == 522 || getId == 531) {
-            resID = R.drawable.showerrain;
-        }else if (getId == 500 || getId == 501 || getId == 502 || getId == 503|| getId == 504) {
-            resID = R.drawable.rain;
-        }else if (getId/100 == 2) {
-            resID = R.drawable.thunderstorm;
-        }else if (getId/100 == 6) {
-            resID = R.drawable.snow;
-        }else if (getId/100 == 7) {
-            resID = R.drawable.mist;
-        }else {
-            resID = R.drawable.questionmark;
-        }return resID;
     }
 
+    public int choiseIconWeather(String getIcon) {
+
+        int resIcon = 0;
+        switch (getIcon) {
+            case "01d":
+                resIcon = R.drawable.clear_sky_day;
+                break;
+            case "01n":
+                resIcon = R.drawable.clear_sky_night;
+                break;
+            case "02d":
+                resIcon = R.drawable.few_clouds_day;
+                break;
+            case "02n":
+                resIcon = R.drawable.few_clouds_night;
+                break;
+            case "03d":
+            case "03n":
+                resIcon = R.drawable.scattered_clouds_night;
+                break;
+            case "04d":
+                resIcon = R.drawable.broken_clouds_day;
+                break;
+            case "04n":
+                resIcon = R.drawable.broken_clouds_night;
+                break;
+            case "09d":
+                resIcon = R.drawable.clear_sky_day;
+                break;
+            case "09n":
+                resIcon = R.drawable.shower_rain_night;
+                break;
+            case "10d":
+                resIcon = R.drawable.rain_day;
+                break;
+            case "10n":
+                resIcon = R.drawable.rain_night;
+                break;
+            case "11d":
+                resIcon = R.drawable.thunderstorm_day;
+                break;
+            case "11n":
+                resIcon = R.drawable.thunderstorm_night;
+                break;
+            case "13d":
+                resIcon = R.drawable.snow_day;
+                break;
+            case "13n":
+                resIcon = R.drawable.snow_night;
+                break;
+            case "50d":
+            case "50n":
+                resIcon = R.drawable.mist_day;
+                break;
+            default:
+                break;
+
+        }return resIcon;
+
+    }
 }

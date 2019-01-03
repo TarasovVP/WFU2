@@ -6,6 +6,7 @@ public class Weather {
 
     private ArrayList<Float> listTemp = new ArrayList<>();
     private ArrayList<Integer> listId = new ArrayList<>();
+    private ArrayList<String> listIcon = new ArrayList<>();
 
 
 
@@ -25,6 +26,15 @@ public class Weather {
     public void setTemp(float temp) {
         listTemp.add(temp);
     }
+
+    public String getIcon(int index) {
+        return listIcon.get(index);
+    }
+
+    public void setIcon(String icon) {
+        listIcon.add(icon);
+    }
+
 
 
 }

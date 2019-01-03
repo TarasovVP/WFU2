@@ -19,32 +19,32 @@ public class GetWeathear {
         JSONObject mWeather = jArr.getJSONObject(0);
         JSONArray jArrWeath = mWeather.getJSONArray("weather");
         JSONObject idWeather = jArrWeath.getJSONObject(0);
-        weather.setIdWeather(getInt("id", idWeather));
+        weather.setIcon(getString("icon", idWeather));
 
         JSONObject mWeather1 = jArr.getJSONObject(1);
         JSONArray jArrWeath1 = mWeather1.getJSONArray("weather");
         JSONObject idWeather1 = jArrWeath1.getJSONObject(0);
-        weather.setIdWeather(getInt("id", idWeather1));
+        weather.setIcon(getString("icon", idWeather1));
 
         JSONObject mWeather2 = jArr.getJSONObject(2);
         JSONArray jArrWeath2 = mWeather2.getJSONArray("weather");
         JSONObject idWeather2 = jArrWeath2.getJSONObject(0);
-        weather.setIdWeather(getInt("id", idWeather2));
+        weather.setIcon(getString("icon", idWeather2));
 
         JSONObject mWeather3 = jArr.getJSONObject(3);
         JSONArray jArrWeath3 = mWeather3.getJSONArray("weather");
         JSONObject idWeather3 = jArrWeath3.getJSONObject(0);
-        weather.setIdWeather(getInt("id", idWeather3));
+        weather.setIcon(getString("icon", idWeather3));
 
         JSONObject mWeather4 = jArr.getJSONObject(4);
         JSONArray jArrWeath4 = mWeather4.getJSONArray("weather");
         JSONObject idWeather4 = jArrWeath4.getJSONObject(0);
-        weather.setIdWeather(getInt("id", idWeather4));
+        weather.setIcon(getString("icon", idWeather4));
 
         JSONObject mWeather5 = jArr.getJSONObject(5);
         JSONArray jArrWeath5 = mWeather5.getJSONArray("weather");
         JSONObject idWeather5 = jArrWeath5.getJSONObject(0);
-        weather.setIdWeather(getInt("id", idWeather5));
+        weather.setIcon(getString("icon", idWeather5));
 
 
 
