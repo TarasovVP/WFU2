@@ -74,35 +74,35 @@
 
             <TextView
                 android:id="@+id/temp1"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:layout_height="45dp"
                 android:text="@string/_3"
                 android:textColor="@color/White" />
 
             <TextView
                 android:id="@+id/temp2"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:layout_height="45dp"
                 android:text="@string/_2"
                 android:textColor="@color/White" />
 
             <TextView
                 android:id="@+id/temp3"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:layout_height="45dp"
                 android:text="@string/_3_"
                 android:textColor="@color/White" />
 
             <TextView
                 android:id="@+id/temp4"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:layout_height="45dp"
                 android:text="@string/_1"
                 android:textColor="@color/White" />
 
             <TextView
                 android:id="@+id/temp5"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:layout_height="45dp"
                 android:text="@string/_0"
                 android:textColor="@color/White" />
@@ -159,35 +159,35 @@
 
             <TextView
                 android:id="@+id/date1"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:layout_height="45dp"
                 android:text="@string/_14"
                 android:textColor="@color/White" />
 
             <TextView
                 android:id="@+id/date2"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:layout_height="45dp"
                 android:text="@string/_14"
                 android:textColor="@color/White" />
 
             <TextView
                 android:id="@+id/date3"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:layout_height="45dp"
                 android:text="@string/_14"
                 android:textColor="@color/White" />
 
             <TextView
                 android:id="@+id/date4"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:layout_height="45dp"
                 android:text="@string/_14"
                 android:textColor="@color/White" />
 
             <TextView
                 android:id="@+id/date5"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:layout_height="45dp"
                 android:text="@string/_14"
                 android:textColor="@color/White" />

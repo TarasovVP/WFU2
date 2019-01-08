@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">WFU2</string>
+    <string name="app_name">WFU</string>
     <string name="title_activity_start">StartActivity</string>
+    <string name="choise">Выберите ваш город</string>
+    <string name="ok">Ok</string>
     <string name="_11_2018_n17_30">11 ноября 2018
         17:30</string>
     <string name="city">Днепр</string>

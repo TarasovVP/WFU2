@@ -1,5 +1,8 @@
 package com.gmail.tarasov1998.wfu2;
 
+import android.content.Intent;
+import android.widget.Toast;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -20,15 +23,21 @@ public class HTTPGet {
             con.setDoOutput(true);
             con.connect();
 
+            StringBuffer buffer=null;
 
-            StringBuffer buffer = new StringBuffer();
-            is = con.getInputStream();
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            String line = null;
-            while ((line = br.readLine()) != null)
-                buffer.append(line + "\r\n");
+            if (con.getResponseCode() == 200) {
+                buffer = new StringBuffer();
+                is = con.getInputStream();
+                BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                String line = null;
+                while ((line = br.readLine()) != null)
+                    buffer.append(line + "\r\n");
+
 
             is.close();
+            }else{
+                return null;
+            }
             con.disconnect();
             return buffer.toString();
         } catch (Throwable t) {
@@ -47,6 +56,7 @@ public class HTTPGet {
         return null;
 
     }
+
 
 
 }

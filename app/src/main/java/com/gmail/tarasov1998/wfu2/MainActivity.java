@@ -4,15 +4,21 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.joda.time.LocalDateTime;
 import org.json.JSONException;
 
 public class MainActivity extends AppCompatActivity {
+
+    final String LOG_TAG = "TAG";
+
+    String city;
 
     private TextView cityShow;
     private TextView temperature;
@@ -38,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView date4;
     private TextView date5;
 
-    //String city = "Dnipro";
-    //String country = "UA";
 
     LocalDateTime date = LocalDateTime.now();
 
@@ -50,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
-        String city = intent.getStringExtra("city");
+        city = intent.getStringExtra("city");
 
         //Set date and time in TextView
         dateTime = (TextView) findViewById(R.id.date);
@@ -86,7 +90,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         JSONWeatherTask task = new JSONWeatherTask();
-        task.execute(new String[]{city});
+
+        task.execute(city);
 
     }
 
@@ -112,13 +117,17 @@ public class MainActivity extends AppCompatActivity {
             String data = ((new HTTPGet()).httpget(params[0]));
 
             try {
-                weather = GetWeathear.getWeather(data);
+                if(data != null) {
+                    weather = GetWeathear.getWeather(data);
+                }else{
+
+                }
 
 
-            } catch (NullPointerException e) {
-                System.out.println("Wrong city");
-            } catch (JSONException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), "Ничего не найдено", Toast.LENGTH_SHORT).show();
+                /*Intent intent = new Intent(getApplicationContext(), ActivityStart.class);
+                startActivity(intent);*/
             }
             return weather;
 
@@ -128,22 +137,24 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Weather weather) {
             super.onPostExecute(weather);
 
-            cityShow.setText(Location.getCity());
-            temperature.setText("" + Math.round((weather.getTemp(0) - 273.15)));
-            mainWeather.setImageResource(choiseIconWeather(weather.getIcon(0)));
+            if(weather != null) {
+                cityShow.setText(Location.getCity() + ", " + Location.getCountry());
+                temperature.setText("" + Math.round((weather.getTemp(0) - 273.15)));
+                mainWeather.setImageResource(choiseIconWeather(weather.getIcon(0)));
 
-            temp1.setText("" + Math.round((weather.getTemp(1) - 273.15)));
-            temp2.setText("" + Math.round((weather.getTemp(2) - 273.15)));
-            temp3.setText("" + Math.round((weather.getTemp(3) - 273.15)));
-            temp4.setText("" + Math.round((weather.getTemp(4) - 273.15)));
-            temp5.setText("" + Math.round((weather.getTemp(5) - 273.15)));
+                temp1.setText("" + Math.round((weather.getTemp(1) - 273.15)));
+                temp2.setText("" + Math.round((weather.getTemp(2) - 273.15)));
+                temp3.setText("" + Math.round((weather.getTemp(3) - 273.15)));
+                temp4.setText("" + Math.round((weather.getTemp(4) - 273.15)));
+                temp5.setText("" + Math.round((weather.getTemp(5) - 273.15)));
 
 
-            weath1.setImageResource(choiseIconWeather(weather.getIcon(1)));
-            weath2.setImageResource(choiseIconWeather(weather.getIcon(2)));
-            weath3.setImageResource(choiseIconWeather(weather.getIcon(3)));
-            weath4.setImageResource(choiseIconWeather(weather.getIcon(4)));
-            weath5.setImageResource(choiseIconWeather(weather.getIcon(5)));
+                weath1.setImageResource(choiseIconWeather(weather.getIcon(1)));
+                weath2.setImageResource(choiseIconWeather(weather.getIcon(2)));
+                weath3.setImageResource(choiseIconWeather(weather.getIcon(3)));
+                weath4.setImageResource(choiseIconWeather(weather.getIcon(4)));
+                weath5.setImageResource(choiseIconWeather(weather.getIcon(5)));
+            }
 
         }
 
@@ -207,7 +218,8 @@ public class MainActivity extends AppCompatActivity {
             default:
                 break;
 
-        }return resIcon;
+        }
+        return resIcon;
 
     }
 }

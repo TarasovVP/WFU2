@@ -9,6 +9,10 @@ public class Weather {
     private ArrayList<String> listIcon = new ArrayList<>();
 
 
+    public static int getZero() {
+
+        return 0;
+    }
 
     public int getIdWeather(int index) {
 

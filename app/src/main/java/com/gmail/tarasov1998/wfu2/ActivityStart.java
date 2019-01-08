@@ -7,10 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class ActivityStart extends AppCompatActivity implements View.OnClickListener {
+public class ActivityStart extends AppCompatActivity {
 
     EditText editText;
     Button ok;
+    String result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,14 +21,16 @@ public class ActivityStart extends AppCompatActivity implements View.OnClickList
         editText = (EditText) findViewById(R.id.editText);
 
         ok = (Button) findViewById(R.id.ok);
-        ok.setOnClickListener(this);
 
     }
-
-    @Override
-    public void onClick(View v) {
+    public void onButtonClick(View v) {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("city", editText.getText().toString());
-        startActivity(intent);
+        result = editText.getText().toString();
+        if (!result.isEmpty()) {
+            intent.putExtra("city", result);
+            startActivity(intent);
+        }
+
     }
+
 }
