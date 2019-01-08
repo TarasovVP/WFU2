@@ -117,10 +117,10 @@ public class MainActivity extends AppCompatActivity {
             String data = ((new HTTPGet()).httpget(params[0]));
 
             try {
-                if(data != null) {
-                    weather = GetWeathear.getWeather(data);
+                if(data == null) {
+                    return null;
                 }else{
-
+                    weather = GetWeathear.getWeather(data);
                 }
 
 
@@ -154,6 +154,11 @@ public class MainActivity extends AppCompatActivity {
                 weath3.setImageResource(choiseIconWeather(weather.getIcon(3)));
                 weath4.setImageResource(choiseIconWeather(weather.getIcon(4)));
                 weath5.setImageResource(choiseIconWeather(weather.getIcon(5)));
+            }else{
+                Intent intent = new Intent(getApplicationContext(), ActivityStart.class);
+                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "Ничего не найдено", Toast.LENGTH_SHORT).show();
+
             }
 
         }
