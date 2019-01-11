@@ -19,7 +19,7 @@
             android:id="@+id/cityShow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
             android:textColor="@color/White"
             android:textSize="30sp"
@@ -29,7 +29,7 @@
             android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="10dp"
             android:gravity="center_horizontal"
             android:textColor="@color/White"
             android:textSize="20sp" />
@@ -38,9 +38,8 @@
             android:id="@+id/temperature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
-            android:text="@string/_3"
             android:textColor="@color/White"
             android:textSize="36sp"
             android:textStyle="bold" />
@@ -48,10 +47,9 @@
         <ImageView
             android:id="@+id/mainWeather"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="15dp"
-            android:contentDescription="TODO" />
+            android:layout_marginTop="10dp"
+            android:layout_height="150dp"
+            android:contentDescription="@string/todo" />
 
     </LinearLayout>
 

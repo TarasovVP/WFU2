@@ -25,7 +25,6 @@ public class HTTPGet {
 
             StringBuffer buffer=null;
 
-            if (con.getResponseCode() == 200) {
                 buffer = new StringBuffer();
                 is = con.getInputStream();
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -35,9 +34,7 @@ public class HTTPGet {
 
 
             is.close();
-            }else{
-                return null;
-            }
+
             con.disconnect();
             return buffer.toString();
         } catch (Throwable t) {

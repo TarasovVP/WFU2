@@ -2,7 +2,9 @@ package com.gmail.tarasov1998.wfu2;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -11,8 +13,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
+import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,15 +71,10 @@ public class MainActivity extends AppCompatActivity {
         dateTime.setText(date.toString("dd MMMM yyyy \n HH:mm"));
 
         date1 = (TextView) findViewById(R.id.date1);
-        date1.setText(date.plusHours(3).toString("HH:mm"));
         date2 = (TextView) findViewById(R.id.date2);
-        date2.setText(date.plusHours(6).toString("HH:mm"));
         date3 = (TextView) findViewById(R.id.date3);
-        date3.setText(date.plusHours(9).toString("HH:mm"));
         date4 = (TextView) findViewById(R.id.date4);
-        date4.setText(date.plusHours(12).toString("HH:mm"));
         date5 = (TextView) findViewById(R.id.date5);
-        date5.setText(date.plusHours(15).toString("HH:mm"));
 
 
         cityShow = (TextView) findViewById(R.id.cityShow);
@@ -125,9 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), "Ничего не найдено", Toast.LENGTH_SHORT).show();
-                /*Intent intent = new Intent(getApplicationContext(), ActivityStart.class);
-                startActivity(intent);*/
+                e.printStackTrace();
             }
             return weather;
 
@@ -139,14 +142,20 @@ public class MainActivity extends AppCompatActivity {
 
             if(weather != null) {
                 cityShow.setText(Location.getCity() + ", " + Location.getCountry());
-                temperature.setText("" + Math.round((weather.getTemp(0) - 273.15)));
+                temperature.setText("" + Math.round((weather.getTemp(0) - 273.15))+"°");
                 mainWeather.setImageResource(choiseIconWeather(weather.getIcon(0)));
 
-                temp1.setText("" + Math.round((weather.getTemp(1) - 273.15)));
-                temp2.setText("" + Math.round((weather.getTemp(2) - 273.15)));
-                temp3.setText("" + Math.round((weather.getTemp(3) - 273.15)));
-                temp4.setText("" + Math.round((weather.getTemp(4) - 273.15)));
-                temp5.setText("" + Math.round((weather.getTemp(5) - 273.15)));
+                date1.setText(weather.getTime(1).substring(10,16));
+                date2.setText(weather.getTime(2).substring(10,16));
+                date3.setText(weather.getTime(3).substring(10,16));
+                date4.setText(weather.getTime(4).substring(10,16));
+                date5.setText(weather.getTime(5).substring(10,16));
+
+                temp1.setText("" + Math.round((weather.getTemp(1) - 273.15))+"°");
+                temp2.setText("" + Math.round((weather.getTemp(2) - 273.15))+"°");
+                temp3.setText("" + Math.round((weather.getTemp(3) - 273.15))+"°");
+                temp4.setText("" + Math.round((weather.getTemp(4) - 273.15))+"°");
+                temp5.setText("" + Math.round((weather.getTemp(5) - 273.15))+"°");
 
 
                 weath1.setImageResource(choiseIconWeather(weather.getIcon(1)));
@@ -154,10 +163,12 @@ public class MainActivity extends AppCompatActivity {
                 weath3.setImageResource(choiseIconWeather(weather.getIcon(3)));
                 weath4.setImageResource(choiseIconWeather(weather.getIcon(4)));
                 weath5.setImageResource(choiseIconWeather(weather.getIcon(5)));
+
+
             }else{
                 Intent intent = new Intent(getApplicationContext(), ActivityStart.class);
                 startActivity(intent);
-                Toast.makeText(getApplicationContext(), "Ничего не найдено", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Ничего не найдено", Toast.LENGTH_LONG).show();
 
             }
 
@@ -227,4 +238,5 @@ public class MainActivity extends AppCompatActivity {
         return resIcon;
 
     }
+
 }
