@@ -1,19 +1,15 @@
 package com.gmail.tarasov1998.wfu2;
 
 
-import android.widget.Toast;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-public class GetWeathear {
+class GetWeathear {
 
-    public static Weather getWeather(String data) throws JSONException, ParseException {
+    static Weather getWeather(String data) throws JSONException, ParseException {
         Weather weather = new Weather();
 
 

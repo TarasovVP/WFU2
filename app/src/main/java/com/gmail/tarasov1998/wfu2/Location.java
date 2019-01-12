@@ -13,10 +13,10 @@ public class Location implements Serializable {
         this.city = city;
     }
 
-    public static String getCountry() {
+    static String getCountry() {
         return country;
     }
-    public void setCountry(String country) {
+    void setCountry(String country) {
         this.country = country;
     }
 

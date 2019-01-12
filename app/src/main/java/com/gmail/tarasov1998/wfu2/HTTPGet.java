@@ -1,59 +1,42 @@
 package com.gmail.tarasov1998.wfu2;
 
-import android.content.Intent;
-import android.widget.Toast;
-
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class HTTPGet {
-    private static String BASE_URL = "http://api.openweathermap.org/data/2.5/forecast?q=";
+class HTTPGet {
+    private String BASE_URL = "http://api.openweathermap.org/data/2.5/forecast?q=";
 
-    public String httpget(String location) {
+    String httpget(String location) {
         HttpURLConnection con = null;
-        InputStream is = null;
-
+        StringBuffer buffer = null;
         try {
             con = (HttpURLConnection) (new URL(BASE_URL + location + "&APPID=824dca49c6fce4716e4f85bf1e4e60e6")).openConnection();
-            con.setRequestMethod("GET");
-            con.setDoInput(true);
-            con.setDoOutput(true);
             con.connect();
 
-            StringBuffer buffer=null;
-
+            try (InputStream is = con.getInputStream()) {
                 buffer = new StringBuffer();
-                is = con.getInputStream();
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 String line = null;
                 while ((line = br.readLine()) != null)
-                    buffer.append(line + "\r\n");
+                    buffer.append(line).append("\r\n");
 
 
-            is.close();
-
-            con.disconnect();
-            return buffer.toString();
-        } catch (Throwable t) {
-            t.printStackTrace();
-        } finally {
-            try {
-                is.close();
             } catch (Throwable t) {
+                t.printStackTrace();
             }
-            try {
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (con != null) {
                 con.disconnect();
-            } catch (Throwable t) {
             }
         }
 
-        return null;
+        return buffer != null ? buffer.toString() : null;
 
     }
-
-
-
 }
