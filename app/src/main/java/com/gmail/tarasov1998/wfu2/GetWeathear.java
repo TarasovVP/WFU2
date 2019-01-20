@@ -17,11 +17,9 @@ class GetWeathear {
 
             jObj = new JSONObject(data);
 
-
-            Location loc = new Location();
             JSONObject locObj = jObj.getJSONObject("city");
-            loc.setCity(getString("name", locObj));
-            loc.setCountry(getString("country", locObj));
+            weather.setCity(getString("name", locObj));
+            weather.setCountry(getString("country", locObj));
 
 
         JSONArray jArr = jObj.getJSONArray("list");
@@ -32,8 +30,8 @@ class GetWeathear {
             JSONObject idWeather = jArrWeath.getJSONObject(0);
             weather.setIcon(getString("icon", idWeather));
 
-            JSONObject mainObj = getObject("main", mWeather);
-            weather.setTemp(getFloat("temp", mainObj));
+            JSONObject mainObj = mWeather.getJSONObject("main");
+            weather.setTemp((float) mainObj.getDouble("temp"));
 
             weather.setTime(getString("dt_txt", mWeather));
         }
@@ -42,17 +40,9 @@ class GetWeathear {
         return weather;
     }
 
-    private static JSONObject getObject(String tagName, JSONObject jObj)  throws JSONException {
-        JSONObject subObj = jObj.getJSONObject(tagName);
-        return subObj;
-    }
-
     private static String getString(String tagName, JSONObject jObj) throws JSONException {
         return jObj.getString(tagName);
     }
 
-    private static float  getFloat(String tagName, JSONObject jObj) throws JSONException {
-        return (float) jObj.getDouble(tagName);
-    }
 
 }

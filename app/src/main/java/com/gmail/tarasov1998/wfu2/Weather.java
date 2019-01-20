@@ -1,23 +1,32 @@
 package com.gmail.tarasov1998.wfu2;
 
 import org.joda.time.LocalTime;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class Weather {
     private ArrayList<String> listTime = new ArrayList<>();
     private ArrayList<Float> listTemp = new ArrayList<>();
-    private ArrayList<Integer> listId = new ArrayList<>();
     private ArrayList<String> listIcon = new ArrayList<>();
+    private static String city;
+    private static String country;
 
 
-    public int getIdWeather(int index) {
-
-        return listId.get(index);
+    public static String getCity() {
+        return city;
+    }
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public void setIdWeather(int idWeather) {
-        listId.add(idWeather);
+    static String getCountry() {
+        return country;
     }
+    void setCountry(String country) {
+        this.country = country;
+    }
+
 
     float getTemp(int index) {
         return listTemp.get(index);
@@ -35,12 +44,12 @@ public class Weather {
         listIcon.add(icon);
     }
 
-    LocalTime getTime(int index) {
-        return LocalTime.parse(listTime.get(index).substring(11, 16));
+    String getTime(int index) {
+        return listTime.get(index);
     }
 
-    public void setTime(String date) {
-        listTime.add(date);
+    public void setTime(String time) {
+        listTime.add(time);
     }
 
     public int choiseIconWeather(String getIcon) {

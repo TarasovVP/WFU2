@@ -11,7 +11,7 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.5"
+        android:layout_weight="1"
         android:background="@color/Purple"
         android:orientation="vertical">
 
@@ -54,145 +54,19 @@
     </LinearLayout>
 
 
-    <TableLayout
-        android:id="@+id/tableLayout"
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/layoutRecycle"
+        android:layout_weight="2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="2.6"
-        android:background="@color/White"
-        android:shrinkColumns="*"
-        android:stretchColumns="*">
+        tools:context="com.gmail.tarasov1998.wfu2.RecycleView">
 
-
-        <TableRow
-            android:id="@+id/tableRow1"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycleView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/Purple">
+            android:layout_height="match_parent"/>
 
-            <TextView
-                android:id="@+id/temp1"
-                android:gravity="center"
-                android:layout_height="45dp"
-                android:text="@string/_3"
-                android:textColor="@color/White" />
-
-            <TextView
-                android:id="@+id/temp2"
-                android:gravity="center"
-                android:layout_height="45dp"
-                android:text="@string/_2"
-                android:textColor="@color/White" />
-
-            <TextView
-                android:id="@+id/temp3"
-                android:gravity="center"
-                android:layout_height="45dp"
-                android:text="@string/_3_"
-                android:textColor="@color/White" />
-
-            <TextView
-                android:id="@+id/temp4"
-                android:gravity="center"
-                android:layout_height="45dp"
-                android:text="@string/_1"
-                android:textColor="@color/White" />
-
-            <TextView
-                android:id="@+id/temp5"
-                android:gravity="center"
-                android:layout_height="45dp"
-                android:text="@string/_0"
-                android:textColor="@color/White" />
-
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:background="@color/Purple">
-
-
-            <ImageView
-                android:id="@+id/weath1"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:contentDescription="TODO" />
-
-            <ImageView
-                android:id="@+id/weath2"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:contentDescription="TODO" />
-
-            <ImageView
-                android:id="@+id/weath3"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:contentDescription="TODO" />
-
-            <ImageView
-                android:id="@+id/weath4"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:contentDescription="TODO" />
-
-            <ImageView
-                android:id="@+id/weath5"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp" />
-
-
-        </TableRow>
-
-
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/Purple">
-
-            <TextView
-                android:id="@+id/date1"
-                android:gravity="center"
-                android:layout_height="45dp"
-                android:text="@string/_14"
-                android:textColor="@color/White" />
-
-            <TextView
-                android:id="@+id/date2"
-                android:gravity="center"
-                android:layout_height="45dp"
-                android:text="@string/_14"
-                android:textColor="@color/White" />
-
-            <TextView
-                android:id="@+id/date3"
-                android:gravity="center"
-                android:layout_height="45dp"
-                android:text="@string/_14"
-                android:textColor="@color/White" />
-
-            <TextView
-                android:id="@+id/date4"
-                android:gravity="center"
-                android:layout_height="45dp"
-                android:text="@string/_14"
-                android:textColor="@color/White" />
-
-            <TextView
-                android:id="@+id/date5"
-                android:gravity="center"
-                android:layout_height="45dp"
-                android:text="@string/_14"
-                android:textColor="@color/White" />
-
-        </TableRow>
-
-
-    </TableLayout>
+    </FrameLayout>
 
 </LinearLayout>
