@@ -11,7 +11,7 @@ class HTTPGet {
     private String BASE_URL = "http://api.openweathermap.org/data/2.5/forecast?q=";
     private String FIND_URL = "https://openweathermap.org/find?q=";
 
-    String getLocation(String location){
+    String getLocationData(String location){
         return httpget(FIND_URL + location);
     }
 
@@ -19,7 +19,7 @@ class HTTPGet {
         return httpget(BASE_URL + request + "&APPID=824dca49c6fce4716e4f85bf1e4e60e6");
     }
 
-    String httpget(String data) {
+    private String httpget(String data) {
         HttpURLConnection con = null;
         StringBuffer buffer = null;
         try {

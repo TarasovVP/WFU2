@@ -11,7 +11,8 @@ public class ActivityStart extends AppCompatActivity {
 
     EditText editText;
     Button ok;
-    String result;
+    String city, result;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +26,14 @@ public class ActivityStart extends AppCompatActivity {
     }
     public void onButtonClick(View v) {
         Intent intent = new Intent(this, MainActivity.class);
-        result = editText.getText().toString();
-        if (!result.isEmpty()) {
-            intent.putExtra("city", result);
+        Location location = new Location();
+        city = editText.getText().toString();
+        if (!city.isEmpty()) {
 
-            startActivity(intent);
+         result = location.getUserCity() + "," + location.getUserCountry();
         }
-
+        intent.putExtra("city", result);
+        startActivity(intent);
     }
 
 }

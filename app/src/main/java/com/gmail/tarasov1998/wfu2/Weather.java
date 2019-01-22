@@ -13,10 +13,10 @@ public class Weather {
     private String country;
 
 
-    public  String getCity() {
+    String getCity() {
         return city;
     }
-    public void setCity(String city) {
+    void setCity(String city) {
         this.city = city;
     }
 

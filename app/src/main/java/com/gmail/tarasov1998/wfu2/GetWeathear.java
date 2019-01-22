@@ -9,13 +9,9 @@ import java.text.ParseException;
 
 class GetWeathear {
 
-    static Weather getWeather(String data) throws JSONException, ParseException {
+    static Weather getWeather(String data) throws JSONException {
         Weather weather = new Weather();
-
-
-        JSONObject jObj = null;
-
-            jObj = new JSONObject(data);
+        JSONObject jObj = new JSONObject(data);
 
             JSONObject locObj = jObj.getJSONObject("city");
             weather.setCity(getString("name", locObj));
