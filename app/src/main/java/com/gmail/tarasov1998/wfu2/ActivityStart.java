@@ -28,6 +28,7 @@ public class ActivityStart extends AppCompatActivity {
         result = editText.getText().toString();
         if (!result.isEmpty()) {
             intent.putExtra("city", result);
+
             startActivity(intent);
         }
 

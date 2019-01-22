@@ -9,18 +9,18 @@ public class Weather {
     private ArrayList<String> listTime = new ArrayList<>();
     private ArrayList<Float> listTemp = new ArrayList<>();
     private ArrayList<String> listIcon = new ArrayList<>();
-    private static String city;
-    private static String country;
+    private String city;
+    private String country;
 
 
-    public static String getCity() {
+    public  String getCity() {
         return city;
     }
     public void setCity(String city) {
         this.city = city;
     }
 
-    static String getCountry() {
+    String getCountry() {
         return country;
     }
     void setCountry(String country) {

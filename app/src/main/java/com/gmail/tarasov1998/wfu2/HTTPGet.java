@@ -9,12 +9,21 @@ import java.net.URL;
 
 class HTTPGet {
     private String BASE_URL = "http://api.openweathermap.org/data/2.5/forecast?q=";
+    private String FIND_URL = "https://openweathermap.org/find?q=";
 
-    String httpget(String location) {
+    String getLocation(String location){
+        return httpget(FIND_URL + location);
+    }
+
+    String getWeatherData(String request){
+        return httpget(BASE_URL + request + "&APPID=824dca49c6fce4716e4f85bf1e4e60e6");
+    }
+
+    String httpget(String data) {
         HttpURLConnection con = null;
         StringBuffer buffer = null;
         try {
-            con = (HttpURLConnection) (new URL(BASE_URL + location + "&APPID=824dca49c6fce4716e4f85bf1e4e60e6")).openConnection();
+            con = (HttpURLConnection) (new URL( data )).openConnection();
             con.connect();
 
             try (InputStream is = con.getInputStream()) {

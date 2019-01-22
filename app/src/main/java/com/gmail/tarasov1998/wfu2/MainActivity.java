@@ -90,7 +90,7 @@
             @Override
             protected Weather doInBackground(String... params) {
                 Weather weather = new Weather();
-                String data = ((new HTTPGet()).httpget(params[0]));
+                String data = ((new HTTPGet()).getWeatherData(params[0]));
 
                 try {
                     if (data == null) {
@@ -112,7 +112,7 @@
                 super.onPostExecute(weather);
 
                 if (weather != null) {
-                    cityShow.setText(String.format("%s, %s", Weather.getCity(), Weather.getCountry()));
+                    cityShow.setText(String.format("%s, %s", weather.getCity(), weather.getCountry()));
                     temperature.setText("" + Math.round((weather.getTemp(0) - 273.15)) + "°");
                     mainWeather.setImageResource(weather.choiseIconWeather(weather.getIcon(0)));
 
