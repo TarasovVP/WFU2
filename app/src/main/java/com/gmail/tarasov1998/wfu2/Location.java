@@ -4,7 +4,7 @@ public class Location {
     private String userData, userCity, userCountry;
 
     String getuserData() {
-        return userData;
+        return "https://openweathermap.org/find?q=" + userData;
     }
     void setuserData(String userData) {
         this.userData = userData;

@@ -2,26 +2,25 @@ package com.gmail.tarasov1998.wfu2;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-
-import java.io.IOException;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 class GetLocation {
 
     private String cities;
 
-    Location getLocation(String data) {
+    static Location getLocation(String data) {
         Location location = new Location();
-        HTTPGet httpGet = new HTTPGet();
         Document doc = null;
-        try
-        {
-            doc = Jsoup.connect(httpGet.getLocationData(data)).get();
+        Elements table = null;
+        Element id = null;
 
-        } catch (
-                IOException e)
-        {
-            e.printStackTrace();
-        }
+        doc = Jsoup.parse(data);
+        table = doc.getElementsByClass("table");
+        id = doc.getElementById("forecast-list");
+
+
         return location;
     }
+
 }
