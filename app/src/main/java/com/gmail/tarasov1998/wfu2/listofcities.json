@@ -1,0 +1,200 @@
+{
+  "message": "accurate",
+  "cod": "200",
+  "count": 5,
+  "list": [
+    {
+      "id": 6167865,
+      "name": "Toronto",
+      "coord": {
+        "lat": 43.654,
+        "lon": -79.3873
+      },
+      "main": {
+        "temp": 272.12,
+        "pressure": 1003,
+        "humidity": 92,
+        "temp_min": 271.15,
+        "temp_max": 273.15
+      },
+      "dt": 1548352800,
+      "wind": {
+        "speed": 6.7,
+        "deg": 300,
+        "gust": 9.3
+      },
+      "sys": {
+        "country": "CA"
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 90
+      },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "overcast clouds",
+          "icon": "04d"
+        }
+      ]
+    },
+    {
+      "id": 2155472,
+      "name": "Toronto",
+      "coord": {
+        "lat": -33.0135,
+        "lon": 151.5942
+      },
+      "main": {
+        "temp": 295.15,
+        "pressure": 1014,
+        "humidity": 94,
+        "temp_min": 295.15,
+        "temp_max": 295.15
+      },
+      "dt": 1548354600,
+      "wind": {
+        "speed": 1,
+        "deg": 340
+      },
+      "sys": {
+        "country": "AU"
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 90
+      },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "overcast clouds",
+          "icon": "04n"
+        }
+      ]
+    },
+    {
+      "id": 5174095,
+      "name": "Toronto",
+      "coord": {
+        "lat": 40.4642,
+        "lon": -80.601
+      },
+      "main": {
+        "temp": 270.85,
+        "pressure": 1007,
+        "humidity": 84,
+        "temp_min": 270.15,
+        "temp_max": 272.05
+      },
+      "dt": 1548356160,
+      "wind": {
+        "speed": 3.6,
+        "deg": 270
+      },
+      "sys": {
+        "country": "US"
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 90
+      },
+      "weather": [
+        {
+          "id": 600,
+          "main": "Snow",
+          "description": "light snow",
+          "icon": "13d"
+        },
+        {
+          "id": 701,
+          "main": "Mist",
+          "description": "mist",
+          "icon": "50d"
+        }
+      ]
+    },
+    {
+      "id": 5226932,
+      "name": "Toronto",
+      "coord": {
+        "lat": 44.573,
+        "lon": -96.6426
+      },
+      "main": {
+        "temp": 255.14,
+        "pressure": 1024,
+        "humidity": 67,
+        "temp_min": 253.75,
+        "temp_max": 256.15
+      },
+      "dt": 1548356160,
+      "wind": {
+        "speed": 10.8,
+        "deg": 330
+      },
+      "sys": {
+        "country": "US"
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 75
+      },
+      "weather": [
+        {
+          "id": 721,
+          "main": "Haze",
+          "description": "haze",
+          "icon": "50d"
+        }
+      ]
+    },
+    {
+      "id": 2651513,
+      "name": "Toronto",
+      "coord": {
+        "lat": 54.6715,
+        "lon": -1.6928
+      },
+      "main": {
+        "temp": 272.24,
+        "pressure": 1011,
+        "humidity": 100,
+        "temp_min": 271.15,
+        "temp_max": 273.15
+      },
+      "dt": 1548355800,
+      "wind": {
+        "speed": 2.6,
+        "deg": 200
+      },
+      "sys": {
+        "country": "GB"
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 20
+      },
+      "weather": [
+        {
+          "id": 721,
+          "main": "Haze",
+          "description": "haze",
+          "icon": "50n"
+        },
+        {
+          "id": 741,
+          "main": "Fog",
+          "description": "fog",
+          "icon": "50n"
+        }
+      ]
+    }
+  ]
+}

@@ -32,6 +32,12 @@
         android:inputType=""
         tools:textSize="18sp" />
 
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </ListView>
+
 
     <Button
         android:id="@+id/ok"

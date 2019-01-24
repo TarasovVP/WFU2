@@ -1,14 +1,11 @@
     package com.gmail.tarasov1998.wfu2;
 
-    import android.content.Context;
     import android.content.Intent;
     import android.os.AsyncTask;
     import android.os.Bundle;
-    import android.support.annotation.NonNull;
     import android.support.v7.app.AppCompatActivity;
     import android.support.v7.widget.DividerItemDecoration;
     import android.support.v7.widget.GridLayoutManager;
-    import android.support.v7.widget.LinearLayoutManager;
     import android.support.v7.widget.RecyclerView;
     import android.view.Menu;
     import android.view.MenuItem;
@@ -17,7 +14,6 @@
     import android.widget.Toast;
 
     import org.joda.time.LocalDateTime;
-    import org.joda.time.LocalTime;
 
     import java.util.ArrayList;
     import java.util.List;
@@ -26,14 +22,10 @@
     public class MainActivity extends AppCompatActivity {
 
         RecycleViewAdapter adapter;
-        RecyclerView recyclerView;
         ArrayList<String> temperatureHours;
         ArrayList<String> time;
         ArrayList<Integer> weatherIcon;
         DividerItemDecoration dividerItemDecoration;
-
-        final String LOG_TAG = "TAG";
-
         String city;
 
         private TextView cityShow;
@@ -96,7 +88,7 @@
                     if (data == null) {
                         return null;
                     } else {
-                        weather = GetWeathear.getWeather(data);
+                        weather = GetJson.getWeather(data);
                     }
 
 

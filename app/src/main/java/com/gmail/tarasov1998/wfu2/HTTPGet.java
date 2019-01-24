@@ -9,10 +9,10 @@ import java.net.URL;
 
 class HTTPGet {
     private String BASE_URL = "http://api.openweathermap.org/data/2.5/forecast?q=";
-    private String FIND_URL = "https://openweathermap.org/find?q=";
+    private String FIND_URL = "https://openweathermap.org//data/2.5/find?callback=?&q=";
 
     String getLocationData(String location){
-        return httpget(FIND_URL + location);
+        return httpget(FIND_URL + location + "&type=like&sort=population&cnt=30");
     }
 
     String getWeatherData(String request){

@@ -5,17 +5,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
-
-class GetWeathear {
+class GetJson {
 
     static Weather getWeather(String data) throws JSONException {
         Weather weather = new Weather();
         JSONObject jObj = new JSONObject(data);
 
-            JSONObject locObj = jObj.getJSONObject("city");
-            weather.setCity(getString("name", locObj));
-            weather.setCountry(getString("country", locObj));
+        JSONObject locObj = jObj.getJSONObject("city");
+        weather.setCity(getString("name", locObj));
+        weather.setCountry(getString("country", locObj));
 
 
         JSONArray jArr = jObj.getJSONArray("list");
@@ -35,6 +33,27 @@ class GetWeathear {
 
         return weather;
     }
+
+    static Location getLocation(String data) throws JSONException {
+        Location location = new Location();
+        JSONObject jObjList = new JSONObject(data.substring(2, data.length() - 1));
+
+        location.setCod(jObjList.getInt("cod"));
+        JSONArray jArrLoc = jObjList.getJSONArray("list");
+
+        for (int i = 0; i < location.getCod(); i++) {
+            JSONObject citiesList = jArrLoc.getJSONObject(i);
+
+            location.setUserCity(getString("name", citiesList));
+
+            JSONObject country = citiesList.getJSONObject("sys");
+            location.setUserCountry(getString("country", country));
+
+        }
+
+        return location;
+    }
+
 
     private static String getString(String tagName, JSONObject jObj) throws JSONException {
         return jObj.getString(tagName);

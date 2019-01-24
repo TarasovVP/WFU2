@@ -1,26 +1,31 @@
 package com.gmail.tarasov1998.wfu2;
 
+import java.util.ArrayList;
+
 public class Location {
-    private String userData, userCity, userCountry;
+    private ArrayList<String> listCities = new ArrayList<>();
+    private ArrayList<String> listCountries = new ArrayList<>();
+    private int cod;
 
-    String getuserData() {
-        return "https://openweathermap.org/find?q=" + userData;
+    int getCod() {
+        return cod;
     }
-    void setuserData(String userData) {
-        this.userData = userData;
+    void setCod(int cod) {
+        this.cod = cod;
     }
 
-    String getUserCity() {
-        return userCity;
+    String getUserCity(int index) {
+        return listCities.get(index);
     }
     void setUserCity(String userCity) {
-        this.userCity = userCity;
+        listCities.add(userCity);
     }
 
-    String getUserCountry() {
-        return userCountry;
+    String getUserCountry(int index) {
+        return listCountries.get(index);
     }
     void setUserCountry(String userCountry) {
-        this.userCountry = userCountry;
+        listCountries.add(userCountry);
     }
+
 }
