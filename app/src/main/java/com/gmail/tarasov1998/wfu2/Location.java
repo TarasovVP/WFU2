@@ -5,13 +5,13 @@ import java.util.ArrayList;
 public class Location {
     private ArrayList<String> listCities = new ArrayList<>();
     private ArrayList<String> listCountries = new ArrayList<>();
-    private int cod;
+    private int count;
 
-    int getCod() {
-        return cod;
+    int getCount() {
+        return count;
     }
-    void setCod(int cod) {
-        this.cod = cod;
+    void setCount(int count) {
+        this.count = count;
     }
 
     String getUserCity(int index) {

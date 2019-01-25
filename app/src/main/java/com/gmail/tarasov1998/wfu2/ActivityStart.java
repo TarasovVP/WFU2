@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,13 +15,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityStart extends AppCompatActivity implements View.OnClickListener {
+public class ActivityStart extends AppCompatActivity {
 
     ArrayList<String> cities;
     ArrayList<String> countries;
     EditText editText;
     Button ok;
-    String city, result;
+    String city, result, input;
     ListView list;
     ArrayAdapter<String> adapter;
 
@@ -35,29 +36,21 @@ public class ActivityStart extends AppCompatActivity implements View.OnClickList
         list = (ListView) findViewById(R.id.list);
 
 
-        JSONLocationTask task = new JSONLocationTask();
-        task.execute(city);
 
-        list.setChoiceMode(list.CHOICE_MODE_SINGLE);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice, cities);
-        list.setAdapter(adapter);
 
     }
 
     public void onButtonClick(View v) {
         city = editText.getText().toString();
         if (!city.isEmpty()) {
+            JSONLocationTask task = new JSONLocationTask();
+            task.execute(city);
+
 
         }
 
     }
 
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("city", result);
-        startActivity(intent);
-    }
 
     private class JSONLocationTask extends AsyncTask<String, Void, Location> {
 
@@ -81,7 +74,7 @@ public class ActivityStart extends AppCompatActivity implements View.OnClickList
         }
 
         @Override
-        protected void onPostExecute(Location location) {
+        protected void onPostExecute(final Location location) {
             super.onPostExecute(location);
 
             if (location != null) {
@@ -90,26 +83,35 @@ public class ActivityStart extends AppCompatActivity implements View.OnClickList
 
                 countries = new ArrayList<>();
                 setList(countries, location);
-            } else {
 
-                Toast.makeText(getApplicationContext(), "Ничего не найдено", Toast.LENGTH_LONG).show();
+                if (location.getCount() == 0) {
+                    Toast.makeText(getApplicationContext(), "Ничего не найдено", Toast.LENGTH_LONG).show();
+                } else {
+                    list.setChoiceMode(list.CHOICE_MODE_SINGLE);
+                    adapter = new ArrayAdapter<>(getBaseContext(), R.layout.cities_list, cities);
+                    list.setAdapter(adapter);
+                    list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        public void onItemClick(AdapterView<?> parent, View view,
+                                                int position, long id) {
+                            result = location.getUserCity(position) + ", " + location.getUserCountry(position);
+                            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                            intent.putExtra("city", result);
+                            startActivity(intent);
 
+                        }
+                    });
+                }
             }
-
         }
 
 
     }
 
     public void setList(List<String> list, Location location) {
-        if (list == cities) {
-            for (int i = 1; i <= 5; i++) {
-                list.add(location.getUserCity(i));
+        int size = location.getCount();
+            for (int i = 0; i < size; i++) {
+                list.add(location.getUserCity(i) + ", " + location.getUserCountry(i));
             }
-        } else if (list == countries) {
-            for (int i = 1; i <= 5; i++) {
-                list.add(location.getUserCountry(i));
-            }
-        }
+
     }
 }

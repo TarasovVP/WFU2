@@ -38,10 +38,11 @@ class GetJson {
         Location location = new Location();
         JSONObject jObjList = new JSONObject(data.substring(2, data.length() - 1));
 
-        location.setCod(jObjList.getInt("cod"));
+        location.setCount(jObjList.getInt("count"));
+
         JSONArray jArrLoc = jObjList.getJSONArray("list");
 
-        for (int i = 0; i < location.getCod(); i++) {
+        for (int i = 0; i < location.getCount(); i++) {
             JSONObject citiesList = jArrLoc.getJSONObject(i);
 
             location.setUserCity(getString("name", citiesList));

@@ -19,34 +19,50 @@
         tools:textSize="20sp"
         android:text="@string/choise"/>
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="210dp"
-        android:layout_height="40dp"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="60dp"
-        android:autofillHints=""
-        android:background="@color/White"
-        android:hint="Введите название"
-        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZабвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯҐґЄєІіЇї'- "
-        android:inputType=""
-        tools:textSize="18sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="210dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="10dp"
+            android:autofillHints=""
+            android:background="@color/White"
+            android:hint="Введите название"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZабвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯҐґЄєІіЇї'- "
+            android:inputType=""
+            tools:textSize="18sp" />
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_marginTop="60dp"
+            android:onClick="onButtonClick"
+            android:background="@color/LightPurple"
+            android:textColor="@color/White"
+            android:text="@string/ok" />
+
+    </LinearLayout>
+
+
 
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
     </ListView>
 
 
-    <Button
-        android:id="@+id/ok"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="50dp"
-        android:onClick="onButtonClick"
-        android:background="@color/LightPurple"
-        android:textColor="@color/White"
-        android:text="@string/ok" />
+
 </LinearLayout>
