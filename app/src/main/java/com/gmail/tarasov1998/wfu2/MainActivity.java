@@ -104,7 +104,7 @@
                 super.onPostExecute(weather);
 
                 if (weather != null) {
-                    cityShow.setText(String.format("%s, %s", weather.getCity(), weather.getCountry()));
+                    cityShow.setText(city);
                     temperature.setText("" + Math.round((weather.getTemp(0) - 273.15)) + "°");
                     mainWeather.setImageResource(weather.choiseIconWeather(weather.getIcon(0)));
 
@@ -131,7 +131,7 @@
                 } else {
                     Intent intent = new Intent(getApplicationContext(), ActivityStart.class);
                     startActivity(intent);
-                    Toast.makeText(getApplicationContext(), "Ничего не найдено", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Ошибка. Повторите запрос", Toast.LENGTH_LONG).show();
 
                 }
 

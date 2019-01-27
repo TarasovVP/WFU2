@@ -27,7 +27,7 @@
         android:textColor="@color/White"
         android:background="@color/Purple"
         android:gravity="center"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/todo" />
 
     <TextView
         android:id="@+id/time"

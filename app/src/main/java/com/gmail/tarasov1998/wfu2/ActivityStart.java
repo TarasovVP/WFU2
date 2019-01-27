@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +37,6 @@ public class ActivityStart extends AppCompatActivity {
         list = (ListView) findViewById(R.id.list);
 
 
-
-
     }
 
     public void onButtonClick(View v) {
@@ -49,69 +48,72 @@ public class ActivityStart extends AppCompatActivity {
 
         }
 
+
+    }
+
+
+
+
+private class JSONLocationTask extends AsyncTask<String, Void, Location> {
+
+    @Override
+    protected Location doInBackground(String... params) {
+        Location location = new Location();
+        String data = ((new HTTPGet()).getLocationData(params[0]));
+
+        try {
+            if (data == null) {
+                return null;
+            } else {
+                location = GetJson.getLocation(data);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return location;
+
+    }
+
+    @Override
+    protected void onPostExecute(final Location location) {
+        super.onPostExecute(location);
+
+        if (location != null) {
+            cities = new ArrayList<>();
+            setList(cities, location);
+
+            countries = new ArrayList<>();
+            setList(countries, location);
+
+            if (location.getCount() == 0) {
+                Toast.makeText(getApplicationContext(), "Ничего не найдено", Toast.LENGTH_LONG).show();
+            } else {
+                list.setChoiceMode(list.CHOICE_MODE_SINGLE);
+                adapter = new ArrayAdapter<>(getBaseContext(), R.layout.cities_list, cities);
+                list.setAdapter(adapter);
+                list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            int position, long id) {
+                        result = location.getUserCity(position) + ", " + location.getUserCountry(position);
+                        Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                        intent.putExtra("city", result);
+                        startActivity(intent);
+
+                    }
+                });
+            }
+        }
     }
 
 
-    private class JSONLocationTask extends AsyncTask<String, Void, Location> {
-
-        @Override
-        protected Location doInBackground(String... params) {
-            Location location = new Location();
-            String data = ((new HTTPGet()).getLocationData(params[0]));
-
-            try {
-                if (data == null) {
-                    return null;
-                } else {
-                    location = GetJson.getLocation(data);
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return location;
-
-        }
-
-        @Override
-        protected void onPostExecute(final Location location) {
-            super.onPostExecute(location);
-
-            if (location != null) {
-                cities = new ArrayList<>();
-                setList(cities, location);
-
-                countries = new ArrayList<>();
-                setList(countries, location);
-
-                if (location.getCount() == 0) {
-                    Toast.makeText(getApplicationContext(), "Ничего не найдено", Toast.LENGTH_LONG).show();
-                } else {
-                    list.setChoiceMode(list.CHOICE_MODE_SINGLE);
-                    adapter = new ArrayAdapter<>(getBaseContext(), R.layout.cities_list, cities);
-                    list.setAdapter(adapter);
-                    list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        public void onItemClick(AdapterView<?> parent, View view,
-                                                int position, long id) {
-                            result = location.getUserCity(position) + ", " + location.getUserCountry(position);
-                            Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                            intent.putExtra("city", result);
-                            startActivity(intent);
-
-                        }
-                    });
-                }
-            }
-        }
-
-
-    }
 
     public void setList(List<String> list, Location location) {
         int size = location.getCount();
-            for (int i = 0; i < size; i++) {
-                list.add(location.getUserCity(i) + ", " + location.getUserCountry(i));
-            }
+        for (int i = 0; i < size; i++) {
+            list.add(location.getUserCity(i) + ", " + location.getUserCountry(i));
+        }
 
     }
+}
 }
