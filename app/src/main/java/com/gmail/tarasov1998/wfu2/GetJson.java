@@ -34,7 +34,7 @@ class GetJson {
         return weather;
     }
 
-    static Location getLocation(String data) throws JSONException {
+    static Location getLocation(String data) throws Exception {
         Location location = new Location();
         JSONObject jObjList = new JSONObject(data.substring(2, data.length() - 1));
 
@@ -51,6 +51,21 @@ class GetJson {
             location.setUserCountry(getString("country", country));
 
         }
+
+        return location;
+    }
+
+    static Location getTranslate(String data) throws JSONException
+    {
+        Location location = new Location();
+
+        JSONArray jObj = new JSONArray(data);
+        JSONObject jsob = jObj.getJSONObject(0);
+        JSONArray jsob2 = jsob.getJSONArray("translations");
+        JSONObject josbj = jsob2.getJSONObject(0);
+
+        location.setCityRU(getString("text", josbj));
+
 
         return location;
     }

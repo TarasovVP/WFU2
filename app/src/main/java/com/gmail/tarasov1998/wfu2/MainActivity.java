@@ -26,7 +26,7 @@
         ArrayList<String> time;
         ArrayList<Integer> weatherIcon;
         DividerItemDecoration dividerItemDecoration;
-        String city;
+        String city, cityRU;
 
         private TextView cityShow;
         private TextView temperature;
@@ -44,6 +44,7 @@
 
 
             Intent intent = getIntent();
+            cityRU = intent.getStringExtra("cityRU");
             city = intent.getStringExtra("city");
 
             //Set date and time in TextView
@@ -103,8 +104,9 @@
             protected void onPostExecute(Weather weather) {
                 super.onPostExecute(weather);
 
+
                 if (weather != null) {
-                    cityShow.setText(city);
+                    cityShow.setText(cityRU);
                     temperature.setText("" + Math.round((weather.getTemp(0) - 273.15)) + "°");
                     mainWeather.setImageResource(weather.choiseIconWeather(weather.getIcon(0)));
 
