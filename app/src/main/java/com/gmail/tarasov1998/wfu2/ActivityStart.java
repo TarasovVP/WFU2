@@ -5,32 +5,30 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import java.io.IOException;
+import com.neovisionaries.i18n.CountryCode;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class ActivityStart extends AppCompatActivity {
 
-    ArrayList<HashMap<String, String>> cityCountry;
-    List<String> citiesCountries;
-    ArrayList<String> cities;
-    ArrayList<String> countries;
-    HashMap<String, String> setCities;
+    List<String> countries;
+    HashMap<String, Integer> setCities;
     EditText editText;
     Button ok;
-    String city, result, input, cityRU, transl;
+    String city, country, countryName, cityName, userCity;
+    Integer idCity;
     ListView list;
-    ArrayAdapter adapter;
-    String cityName;
+    ArrayAdapter<String> adapter;
 
 
     @Override
@@ -56,9 +54,13 @@ public class ActivityStart extends AppCompatActivity {
 
     private class JSONLocationTask extends AsyncTask<String, Void, Location> {
 
+
+
         @Override
         protected Location doInBackground(String... params) {
             Location location = new Location();
+
+
             String loc = ((new HTTPGet()).getLocationData(params[0]));
 
             try {
@@ -81,30 +83,30 @@ public class ActivityStart extends AppCompatActivity {
             if (location != null) {
                 setCities = new HashMap<>();
                 setHash(setCities, location);
-                citiesCountries = new ArrayList<>(setCities.keySet());
+                countries = new ArrayList<>(setCities.keySet());
 
-                cities = new ArrayList<>();
-                setList(cities, location);
-
-                countries = new ArrayList<>();
-                setList(countries, location);
-
-                cityCountry = new ArrayList<>();
-                cityCountry.add(setCities);
 
                 if (location.getCount() == 0) {
                     Toast.makeText(getApplicationContext(), "Ничего не найдено", Toast.LENGTH_LONG).show();
                 } else {
-                    list.setChoiceMode(list.CHOICE_MODE_SINGLE);
-                    adapter = new ArrayAdapter(getBaseContext(), R.layout.cities_list, citiesCountries);
+                    list.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+                    adapter = new ArrayAdapter<>(getBaseContext(), R.layout.cities_list, countries);
                     list.setAdapter(adapter);
                     list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         public void onItemClick(AdapterView<?> parent, View view,
                                                 int position, long id) {
-                            result = location.getUserCity(position);
+                            city = location.getUserCity(0);
+                            country = countries.get(position);
+                            idCity =  setCities.get(country);
 
-                            TranslateTask translateTask = new TranslateTask();
-                            translateTask.execute(result);
+                            Intent intent = new Intent(getBaseContext(), ActivityShowWeather.class);
+                            Bundle extras = new Bundle();
+                            userCity = city + ", " + country;
+                            extras.putInt("id", idCity);
+                            extras.putString("userCity", userCity);
+                            intent.putExtras(extras);
+                            startActivity(intent);
+
 
                         }
                     });
@@ -114,60 +116,20 @@ public class ActivityStart extends AppCompatActivity {
 
 
 
-         void setList(List<String> list, Location location) {
-            int size = location.getCount();
+        void setHash(HashMap<String, Integer> hashList, Location location) {
             cityName = location.getUserCity(0);
-            for (int i = 0; i < size; i++) {
-                list.add(cityName + ", " + location.getUserCountry(i));
-            }
-
-        }
-
-         void setHash(HashMap<String, String> hashList, Location location) {
             int size = location.getCount();
             for (int i = 0; i < size; i++) {
-                hashList.put(location.getUserCountry(i), location.getUserCity(i));
+                countryName = CountryCode.getByCode(location.getUserCountry(i)).getName();
+                hashList.put(countryName, location.getId(i));
             }
 
 
         }
+
     }
 
-    private class TranslateTask extends AsyncTask<String, Void, Location> {
 
-        @Override
-        protected Location doInBackground(String... params) {
-            Location location = new Location();
-            Translate translate = new Translate();
-            try {
-                transl = translate.Post(city);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            try {
-                if (transl == null) {
-                    return null;
-                } else {
-                    location = GetJson.getTranslate(transl);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return location;
-
-        }
-
-        @Override
-        protected void onPostExecute(final Location location) {
-            super.onPostExecute(location);
-            Intent intent = new Intent(getBaseContext(), MainActivity.class);
-            intent.putExtra("city", result);
-            cityRU = location.getCityRU();
-            intent.putExtra("cityRU", cityRU);
-            startActivity(intent);
-        }
-    }
 }
 
 

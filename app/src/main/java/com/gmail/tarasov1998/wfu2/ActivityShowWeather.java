@@ -19,14 +19,14 @@
     import java.util.List;
 
 
-    public class MainActivity extends AppCompatActivity {
+    public class ActivityShowWeather extends AppCompatActivity {
 
         RecycleViewAdapter adapter;
         ArrayList<String> temperatureHours;
         ArrayList<String> time;
         ArrayList<Integer> weatherIcon;
-        DividerItemDecoration dividerItemDecoration;
-        String city, cityRU;
+        String cityRU;
+        int id;
 
         private TextView cityShow;
         private TextView temperature;
@@ -44,8 +44,12 @@
 
 
             Intent intent = getIntent();
-            cityRU = intent.getStringExtra("cityRU");
-            city = intent.getStringExtra("city");
+            Bundle extras = intent.getExtras();
+            if (extras != null) {
+                cityRU = extras.getString("userCity");
+                id = extras.getInt("id");
+            }
+
 
             //Set date and time in TextView
             TextView dateTime = (TextView) findViewById(R.id.date);
@@ -59,7 +63,7 @@
 
             JSONWeatherTask task = new JSONWeatherTask();
 
-            task.execute(city);
+            task.execute(id);
 
 
         }
@@ -78,10 +82,10 @@
             return super.onOptionsItemSelected(item);
         }
 
-        private class JSONWeatherTask extends AsyncTask<String, Void, Weather> {
+        private class JSONWeatherTask extends AsyncTask<Integer, Void, Weather> {
 
             @Override
-            protected Weather doInBackground(String... params) {
+            protected Weather doInBackground(Integer... params) {
                 Weather weather = new Weather();
                 String data = ((new HTTPGet()).getWeatherData(params[0]));
 
@@ -160,6 +164,42 @@
             }
         }
 
+ /*private class TranslateTask extends AsyncTask<String, Void, Location> {
 
+        @Override
+        protected Location doInBackground(String... params) {
+            Location location = new Location();
+            Translate translate = new Translate();
+            try {
+                transl = translate.Post(city);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                if (transl == null) {
+                    return null;
+                } else {
+                    location = GetJson.getTranslate(transl);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return location;
+
+        }
+
+        @Override
+        protected void onPostExecute(final Location location) {
+            super.onPostExecute(location);
+            Intent intent = new Intent(getBaseContext(), ActivityShowWeather.class);
+            Bundle extras = new Bundle();
+            userCity = location.getCityRU();
+            extras.putInt("id", location.getIdCountry());
+            extras.putString("userCity", userCity);
+            intent.putExtras(extras);
+            startActivity(intent);
+        }
+    }*/
 
     }

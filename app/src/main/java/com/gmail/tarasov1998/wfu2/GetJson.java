@@ -46,8 +46,11 @@ class GetJson {
             JSONObject citiesList = jArrLoc.getJSONObject(i);
 
             location.setUserCity(getString("name", citiesList));
+            int id = citiesList.getInt("id");
+            location.setId(id);
 
             JSONObject country = citiesList.getJSONObject("sys");
+
             location.setUserCountry(getString("country", country));
 
         }
@@ -55,7 +58,7 @@ class GetJson {
         return location;
     }
 
-    static Location getTranslate(String data) throws JSONException
+   /* static Location getTranslate(String data) throws JSONException
     {
         Location location = new Location();
 
@@ -69,7 +72,7 @@ class GetJson {
 
         return location;
     }
-
+*/
 
     private static String getString(String tagName, JSONObject jObj) throws JSONException {
         return jObj.getString(tagName);

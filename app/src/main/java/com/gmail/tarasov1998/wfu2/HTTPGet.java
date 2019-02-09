@@ -8,15 +8,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 class HTTPGet {
-    private String BASE_URL = "http://api.openweathermap.org/data/2.5/forecast?q=";
+    private String BASE_URL = "http://openweathermap.org/data/2.5/forecast?q=";
     private String FIND_URL = "https://openweathermap.org//data/2.5/find?callback=?&q=";
 
     String getLocationData(String location){
-        return httpget(FIND_URL + location + "&type=like&sort=population&cnt=30" + "&appid=b6907d289e10d714a6e88b30761fae22");
+        return httpget(FIND_URL + location + "&type=like&sort=population&cnt=30&appid=b6907d289e10d714a6e88b30761fae22");
     }
 
-    String getWeatherData(String request){
-        return httpget(BASE_URL + request + "&appid=824dca49c6fce4716e4f85bf1e4e60e6");
+    String getWeatherData(Integer request){
+        return httpget(BASE_URL + request + "&appid=b6907d289e10d714a6e88b30761fae22");
     }
 
     private String httpget(String data) {
