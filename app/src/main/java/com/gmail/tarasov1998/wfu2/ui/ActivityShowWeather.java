@@ -1,10 +1,9 @@
-    package com.gmail.tarasov1998.wfu2;
+    package com.gmail.tarasov1998.wfu2.ui;
 
     import android.content.Intent;
     import android.os.AsyncTask;
     import android.os.Bundle;
     import android.support.v7.app.AppCompatActivity;
-    import android.support.v7.widget.DividerItemDecoration;
     import android.support.v7.widget.GridLayoutManager;
     import android.support.v7.widget.RecyclerView;
     import android.view.Menu;
@@ -12,6 +11,11 @@
     import android.widget.ImageView;
     import android.widget.TextView;
     import android.widget.Toast;
+
+    import com.gmail.tarasov1998.wfu2.data.GetJson;
+    import com.gmail.tarasov1998.wfu2.network.HTTPGet;
+    import com.gmail.tarasov1998.wfu2.R;
+    import com.gmail.tarasov1998.wfu2.model.Weather;
 
     import org.joda.time.LocalDateTime;
 
@@ -21,6 +25,8 @@
 
     public class ActivityShowWeather extends AppCompatActivity {
 
+       // @BindView(R.id.date) TextView dateTime;
+
         RecycleViewAdapter adapter;
         ArrayList<String> temperatureHours;
         ArrayList<String> time;
@@ -28,18 +34,22 @@
         String cityRU;
         int id;
 
-        private TextView cityShow;
-        private TextView temperature;
+        RecyclerView recyclerView;
+        private TextView cityShow,  temperature, dateTime;
         private ImageView mainWeather;
 
 
-        LocalDateTime date = LocalDateTime.now();
+        private LocalDateTime date = LocalDateTime.now();
+
+        private static final int NUMBER_OF_COLUMNS = 5;
+        private static final int FIRST_COLUMN = 1;
+
 
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
+            setContentView(R.layout.activity_show_weather);
 
 
 
@@ -52,12 +62,10 @@
 
 
             //Set date and time in TextView
-            TextView dateTime = (TextView) findViewById(R.id.date);
-            dateTime.setText(date.toString("dd MMMM yyyy \n HH:mm"));
-
-            cityShow = (TextView) findViewById(R.id.cityShow);
-            temperature = (TextView) findViewById(R.id.temperature);
-            mainWeather = (ImageView) findViewById(R.id.mainWeather);
+            dateTime = (TextView) findViewById(R.id.dateShowWeather);
+            cityShow = (TextView) findViewById(R.id.cityShowWeather);
+            temperature = (TextView) findViewById(R.id.temperatureShowWeather);
+            mainWeather = (ImageView) findViewById(R.id.weatherShowWeather);
 
 
 
@@ -70,7 +78,7 @@
 
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
-            menu.add(0, 1, 0, "Выбрать город");
+            menu.add(R.string.menu_item);
 
             return super.onCreateOptionsMenu(menu);
         }
@@ -111,7 +119,8 @@
 
                 if (weather != null) {
                     cityShow.setText(cityRU);
-                    temperature.setText("" + Math.round((weather.getTemp(0) - 273.15)) + "°");
+                    dateTime.setText(date.toString("dd MMMM yyyy \n HH:mm"));
+                    temperature.setText("" + Math.round(weather.getTemp(0)) + "°");
                     mainWeather.setImageResource(weather.choiseIconWeather(weather.getIcon(0)));
 
 
@@ -124,20 +133,19 @@
 
                     time = new ArrayList<>();
                     setList(time, weather);
-                    RecyclerView recyclerView = findViewById(R.id.recycleView);
 
 
-                    int numberOfColumns = 5;
-                    recyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(), numberOfColumns));
-                    adapter = new RecycleViewAdapter(getBaseContext(), temperatureHours, weatherIcon, time);
+                    recyclerView = findViewById(R.id.recycleView);
 
-                    recyclerView.setAdapter(adapter);
+                    initAdapter();
+
+
 
 
                 } else {
                     Intent intent = new Intent(getApplicationContext(), ActivityStart.class);
                     startActivity(intent);
-                    Toast.makeText(getApplicationContext(), "Ошибка. Повторите запрос", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.err_repeat, Toast.LENGTH_LONG).show();
 
                 }
 
@@ -147,11 +155,11 @@
         }
         public void setList(List<String> list, Weather weather) {
             if (list == temperatureHours) {
-                for (int i = 1; i <= 5; i++) {
-                    list.add(Math.round((weather.getTemp(i) - 273.15)) + "°");
+                for (int i = FIRST_COLUMN; i <= NUMBER_OF_COLUMNS; i++) {
+                    list.add(Math.round(weather.getTemp(i)) + "°");
                 }
             } else if (list == time) {
-                for (int i = 1; i <= 5; i++) {
+                for (int i = FIRST_COLUMN; i <= NUMBER_OF_COLUMNS; i++) {
                     list.add(weather.getTime(i).substring(10,16));
                 }
             }
@@ -159,47 +167,15 @@
 
 
         public void setWeatherIcon(List<Integer> list, Weather weather) {
-            for (int i = 1; i <= 5; i++) {
+            for (int i = FIRST_COLUMN; i <= NUMBER_OF_COLUMNS; i++) {
                 list.add(weather.choiseIconWeather(weather.getIcon(i)));
             }
         }
+        public void initAdapter(){
+            recyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(), NUMBER_OF_COLUMNS));
+            adapter = new RecycleViewAdapter(getBaseContext(), temperatureHours, weatherIcon, time);
 
- /*private class TranslateTask extends AsyncTask<String, Void, Location> {
-
-        @Override
-        protected Location doInBackground(String... params) {
-            Location location = new Location();
-            Translate translate = new Translate();
-            try {
-                transl = translate.Post(city);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            try {
-                if (transl == null) {
-                    return null;
-                } else {
-                    location = GetJson.getTranslate(transl);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return location;
-
+            recyclerView.setAdapter(adapter);
         }
-
-        @Override
-        protected void onPostExecute(final Location location) {
-            super.onPostExecute(location);
-            Intent intent = new Intent(getBaseContext(), ActivityShowWeather.class);
-            Bundle extras = new Bundle();
-            userCity = location.getCityRU();
-            extras.putInt("id", location.getIdCountry());
-            extras.putString("userCity", userCity);
-            intent.putExtras(extras);
-            startActivity(intent);
-        }
-    }*/
 
     }

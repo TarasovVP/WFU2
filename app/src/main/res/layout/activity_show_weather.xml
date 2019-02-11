@@ -5,47 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ActivityShowWeather">
+    tools:context=".ui.ActivityShowWeather">
 
     <LinearLayout
-        android:id="@+id/relativeLayout"
+        android:id="@+id/topLayoutShowWeather"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@color/Purple"
+        android:background="@color/purple"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/cityShow"
+            android:id="@+id/cityShowWeather"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
-            android:textColor="@color/White"
-            android:textSize="30sp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/cityShowWeather"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/date"
+            android:id="@+id/dateShowWeather"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:gravity="center_horizontal"
-            android:textColor="@color/White"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/temperature"
+            android:id="@+id/temperatureShowWeather"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
-            android:textColor="@color/White"
-            android:textSize="36sp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/temperatureShowWeather"
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/mainWeather"
+            android:id="@+id/weatherShowWeather"
             android:layout_width="match_parent"
             android:layout_marginTop="10dp"
             android:layout_height="150dp"
@@ -54,13 +54,12 @@
     </LinearLayout>
 
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/layoutRecycle"
+    <LinearLayout
+        android:id="@+id/bottomLayoutShowWeather"
         android:layout_weight="2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/Purple"
+        android:background="@color/purple"
         tools:context="com.gmail.tarasov1998.wfu2.RecycleView">
 
         <android.support.v7.widget.RecyclerView

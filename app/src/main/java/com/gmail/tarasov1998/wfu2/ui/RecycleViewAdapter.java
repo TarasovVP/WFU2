@@ -1,4 +1,4 @@
-package com.gmail.tarasov1998.wfu2;
+package com.gmail.tarasov1998.wfu2.ui;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.gmail.tarasov1998.wfu2.R;
 
 import java.util.List;
 
@@ -25,9 +27,9 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
         ViewHolder(View itemView) {
             super(itemView);
-            temper = itemView.findViewById(R.id.temperatureHours);
-            weatherIcon = itemView.findViewById(R.id.weatherIcon);
-            time = itemView.findViewById(R.id.time);
+            temper = itemView.findViewById(R.id.tempShowWeather);
+            weatherIcon = itemView.findViewById(R.id.weatherIconShowWeather);
+            time = itemView.findViewById(R.id.timeShowWeather);
 
         }
 

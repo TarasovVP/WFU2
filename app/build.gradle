@@ -38,5 +38,8 @@ dependencies {
     implementation 'com.squareup.okhttp:okhttp:2.7.5'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.neovisionaries:nv-i18n:1.22'
+    /*implementation 'com.jakewharton:butterknife:10.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'*/
+
 }
 

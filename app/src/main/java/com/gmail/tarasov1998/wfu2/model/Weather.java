@@ -1,7 +1,6 @@
-package com.gmail.tarasov1998.wfu2;
+package com.gmail.tarasov1998.wfu2.model;
 
-import org.joda.time.LocalTime;
-import org.json.JSONObject;
+import com.gmail.tarasov1998.wfu2.R;
 
 import java.util.ArrayList;
 
@@ -9,42 +8,24 @@ public class Weather {
     private ArrayList<String> listTime = new ArrayList<>();
     private ArrayList<Float> listTemp = new ArrayList<>();
     private ArrayList<String> listIcon = new ArrayList<>();
-    private String city;
-    private String country;
 
-
-    String getCity() {
-        return city;
-    }
-    void setCity(String city) {
-        this.city = city;
-    }
-
-    String getCountry() {
-        return country;
-    }
-    void setCountry(String country) {
-        this.country = country;
-    }
-
-
-    float getTemp(int index) {
+    public float getTemp(int index) {
         return listTemp.get(index);
     }
 
-    void setTemp(float temp) {
+    public void setTemp(float temp) {
         listTemp.add(temp);
     }
 
-    String getIcon(int index) {
+    public String getIcon(int index) {
         return listIcon.get(index);
     }
 
-    void setIcon(String icon) {
+    public void setIcon(String icon) {
         listIcon.add(icon);
     }
 
-    String getTime(int index) {
+    public String getTime(int index) {
         return listTime.get(index);
     }
 

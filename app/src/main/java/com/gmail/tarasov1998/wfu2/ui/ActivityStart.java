@@ -1,4 +1,4 @@
-package com.gmail.tarasov1998.wfu2;
+package com.gmail.tarasov1998.wfu2.ui;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -13,6 +13,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.gmail.tarasov1998.wfu2.data.GetJson;
+import com.gmail.tarasov1998.wfu2.network.HTTPGet;
+import com.gmail.tarasov1998.wfu2.model.Location;
+import com.gmail.tarasov1998.wfu2.R;
 import com.neovisionaries.i18n.CountryCode;
 
 import java.util.ArrayList;
@@ -31,14 +35,15 @@ public class ActivityStart extends AppCompatActivity {
     ArrayAdapter<String> adapter;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        editText = (EditText) findViewById(R.id.editText);
-        ok = (Button) findViewById(R.id.ok);
-        list = (ListView) findViewById(R.id.list);
+        editText = (EditText) findViewById(R.id.editTextStart);
+        ok = (Button) findViewById(R.id.buttonOkStart);
+        list = (ListView) findViewById(R.id.listCitiesStart);
 
 
     }
@@ -80,15 +85,13 @@ public class ActivityStart extends AppCompatActivity {
         protected void onPostExecute(final Location location) {
             super.onPostExecute(location);
 
-            if (location != null) {
-                setCities = new HashMap<>();
-                setHash(setCities, location);
-                countries = new ArrayList<>(setCities.keySet());
-
-
-                if (location.getCount() == 0) {
-                    Toast.makeText(getApplicationContext(), "Ничего не найдено", Toast.LENGTH_LONG).show();
+            if (location.getCount() == 0) {
+                Toast.makeText(getApplicationContext(), R.string.err_nothing_found, Toast.LENGTH_LONG).show();
                 } else {
+                    setCities = new HashMap<>();
+                    setHash(setCities, location);
+                    countries = new ArrayList<>(setCities.keySet());
+
                     list.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
                     adapter = new ArrayAdapter<>(getBaseContext(), R.layout.cities_list, countries);
                     list.setAdapter(adapter);
@@ -97,7 +100,7 @@ public class ActivityStart extends AppCompatActivity {
                                                 int position, long id) {
                             city = location.getUserCity(0);
                             country = countries.get(position);
-                            idCity =  setCities.get(country);
+                            idCity = setCities.get(country);
 
                             Intent intent = new Intent(getBaseContext(), ActivityShowWeather.class);
                             Bundle extras = new Bundle();
@@ -110,7 +113,7 @@ public class ActivityStart extends AppCompatActivity {
 
                         }
                     });
-                }
+
             }
         }
 

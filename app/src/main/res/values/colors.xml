@@ -3,14 +3,9 @@
     <color name="colorPrimary">#14AE6A</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="DeepSkyBlue">#00BFFF</color>
-    <color name="RoyalBlue">#4169E1</color>
-    <color name="LightSeaGreen">#20B2AA</color>
-    <color name="Goldenrod">#DAA520</color>
-    <color name="LDarkGoldenRod">#B8860B</color>
-    <color name="Purple">#4b1062</color>
-    <color name="DarkPurple">#280834</color>
-    <color name="White">#ffffff</color>
-    <color name="LightPurple">#9156a2</color>
-    <color name="TextColorBar">#000000</color>
+    <color name="purple">#4b1062</color>
+    <color name="darkPurple">#280834</color>
+    <color name="white">#ffffff</color>
+    <color name="lightPurple">#9156a2</color>
+    <color name="textColorBar">#000000</color>
 </resources>

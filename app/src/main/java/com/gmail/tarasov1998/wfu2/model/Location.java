@@ -1,4 +1,4 @@
-package com.gmail.tarasov1998.wfu2;
+package com.gmail.tarasov1998.wfu2.model;
 
 import java.util.ArrayList;
 
@@ -19,27 +19,27 @@ public class Location {
         listId.add(id);
     }
 
-    int getCount() {
+    public int getCount() {
         return count;
     }
 
-    void setCount(int count) {
+    public void setCount(int count) {
         this.count = count;
     }
 
-    String getUserCity(int index) {
+    public String getUserCity(int index) {
         return listCities.get(index);
     }
 
-    void setUserCity(String userCity) {
+    public void setUserCity(String userCity) {
         listCities.add(userCity);
     }
 
-    String getUserCountry(int index) {
+    public String getUserCountry(int index) {
         return listCountries.get(index);
     }
 
-    void setUserCountry(String userCountry) {
+    public void setUserCountry(String userCountry) {
         listCountries.add(userCountry);
     }
 
