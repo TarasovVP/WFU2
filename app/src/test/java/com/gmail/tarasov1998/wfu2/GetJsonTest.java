@@ -21,7 +21,7 @@ public class GetJsonTest {
         String timeExp="";
         try {
             timeRight = "00:00";
-            Weather weather = GetJson.getWeather(data);
+            Weather weather = JsonParser.getWeather(data);
             timeExp = weather.getTime(0).substring(10,16);
         } catch (JSONException e) {
             e.printStackTrace();

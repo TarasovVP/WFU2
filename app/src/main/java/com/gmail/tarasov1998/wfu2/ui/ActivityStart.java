@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.gmail.tarasov1998.wfu2.data.GetJson;
+import com.gmail.tarasov1998.wfu2.data.JsonParser;
 import com.gmail.tarasov1998.wfu2.network.HTTPGet;
 import com.gmail.tarasov1998.wfu2.model.Location;
 import com.gmail.tarasov1998.wfu2.R;
@@ -72,7 +72,7 @@ public class ActivityStart extends AppCompatActivity {
                 if (loc == null) {
                     return null;
                 } else {
-                    location = GetJson.getLocation(loc);
+                    location = JsonParser.getLocation(loc);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

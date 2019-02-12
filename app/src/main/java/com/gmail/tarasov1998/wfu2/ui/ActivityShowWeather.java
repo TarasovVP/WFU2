@@ -12,7 +12,7 @@
     import android.widget.TextView;
     import android.widget.Toast;
 
-    import com.gmail.tarasov1998.wfu2.data.GetJson;
+    import com.gmail.tarasov1998.wfu2.data.JsonParser;
     import com.gmail.tarasov1998.wfu2.network.HTTPGet;
     import com.gmail.tarasov1998.wfu2.R;
     import com.gmail.tarasov1998.wfu2.model.Weather;
@@ -99,7 +99,7 @@
                     if (data == null) {
                         return null;
                     } else {
-                        weather = GetJson.getWeather(data);
+                        weather = JsonParser.getWeather(data);
                     }
 
 
