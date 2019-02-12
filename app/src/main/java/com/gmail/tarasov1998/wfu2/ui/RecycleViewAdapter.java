@@ -13,6 +13,9 @@ import com.gmail.tarasov1998.wfu2.R;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.ViewHolder> {
 
     private List<String> temperData;
@@ -20,16 +23,20 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     private List<String> timeData;
     private LayoutInflater mInflater;
 
+    private static final int NUMBER = 5;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView temper, time;
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.tempShowWeather)
+        TextView temper;
+        @BindView(R.id.timeShowWeather)
+        TextView time;
+        @BindView(R.id.weatherIconShowWeather)
         ImageView weatherIcon;
 
         ViewHolder(View itemView) {
             super(itemView);
-            temper = itemView.findViewById(R.id.tempShowWeather);
-            weatherIcon = itemView.findViewById(R.id.weatherIconShowWeather);
-            time = itemView.findViewById(R.id.timeShowWeather);
+            ButterKnife.bind(this, itemView);
 
         }
 
@@ -64,7 +71,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     @Override
     public int getItemCount() {
-        return 5;
+        return NUMBER;
 
     }
 

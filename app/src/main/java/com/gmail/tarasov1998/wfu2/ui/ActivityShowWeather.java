@@ -22,21 +22,32 @@
     import java.util.ArrayList;
     import java.util.List;
 
+    import butterknife.BindView;
+    import butterknife.ButterKnife;
+
 
     public class ActivityShowWeather extends AppCompatActivity {
 
-       // @BindView(R.id.date) TextView dateTime;
 
-        RecycleViewAdapter adapter;
         ArrayList<String> temperatureHours;
         ArrayList<String> time;
         ArrayList<Integer> weatherIcon;
-        String cityRU;
-        int id;
 
+        RecycleViewAdapter adapter;
         RecyclerView recyclerView;
-        private TextView cityShow,  temperature, dateTime;
-        private ImageView mainWeather;
+
+        private String userCity;
+        private int id;
+
+
+        @BindView(R.id.cityShowWeather)
+        TextView cityShow;
+        @BindView(R.id.temperatureShowWeather)
+        TextView temperature;
+        @BindView(R.id.dateShowWeather)
+        TextView dateTime;
+        @BindView(R.id.weatherShowWeather)
+        ImageView Weather;
 
 
         private LocalDateTime date = LocalDateTime.now();
@@ -50,30 +61,17 @@
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_show_weather);
-
-
+            ButterKnife.bind(this);
 
             Intent intent = getIntent();
             Bundle extras = intent.getExtras();
             if (extras != null) {
-                cityRU = extras.getString("userCity");
+                userCity = extras.getString("userCity");
                 id = extras.getInt("id");
             }
 
-
-            //Set date and time in TextView
-            dateTime = (TextView) findViewById(R.id.dateShowWeather);
-            cityShow = (TextView) findViewById(R.id.cityShowWeather);
-            temperature = (TextView) findViewById(R.id.temperatureShowWeather);
-            mainWeather = (ImageView) findViewById(R.id.weatherShowWeather);
-
-
-
             JSONWeatherTask task = new JSONWeatherTask();
-
             task.execute(id);
-
-
         }
 
         @Override
@@ -118,10 +116,10 @@
 
 
                 if (weather != null) {
-                    cityShow.setText(cityRU);
+                    cityShow.setText(userCity);
                     dateTime.setText(date.toString("dd MMMM yyyy \n HH:mm"));
                     temperature.setText("" + Math.round(weather.getTemp(0)) + "°");
-                    mainWeather.setImageResource(weather.choiseIconWeather(weather.getIcon(0)));
+                    Weather.setImageResource(weather.choiseIconWeather(weather.getIcon(0)));
 
 
 
@@ -138,9 +136,6 @@
                     recyclerView = findViewById(R.id.recycleView);
 
                     initAdapter();
-
-
-
 
                 } else {
                     Intent intent = new Intent(getApplicationContext(), ActivityStart.class);

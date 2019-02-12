@@ -23,29 +23,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ActivityStart extends AppCompatActivity {
 
     List<String> countries;
     HashMap<String, Integer> setCities;
-    EditText editText;
-    Button ok;
-    String city, country, countryName, cityName, userCity;
     Integer idCity;
-    ListView list;
     ArrayAdapter<String> adapter;
+    String city, country, countryName, cityName, userCity;
 
-
+    @BindView(R.id.editTextStart)
+    EditText editText;
+    @BindView(R.id.buttonOkStart)
+    Button ok;
+    @BindView(R.id.listCitiesStart)
+    ListView list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
-        editText = (EditText) findViewById(R.id.editTextStart);
-        ok = (Button) findViewById(R.id.buttonOkStart);
-        list = (ListView) findViewById(R.id.listCitiesStart);
-
-
+        ButterKnife.bind(this);
     }
 
     public void onButtonClick(View v) {
@@ -85,9 +85,12 @@ public class ActivityStart extends AppCompatActivity {
         protected void onPostExecute(final Location location) {
             super.onPostExecute(location);
 
-            if (location.getCount() == 0) {
-                Toast.makeText(getApplicationContext(), R.string.err_nothing_found, Toast.LENGTH_LONG).show();
+            if (location == null) {
+                Toast.makeText(getApplicationContext(), R.string.err_repeat, Toast.LENGTH_LONG).show();
                 } else {
+                if (location.getCount() == 0){
+                    Toast.makeText(getApplicationContext(), R.string.err_nothing_found, Toast.LENGTH_LONG).show();
+                }else
                     setCities = new HashMap<>();
                     setHash(setCities, location);
                     countries = new ArrayList<>(setCities.keySet());

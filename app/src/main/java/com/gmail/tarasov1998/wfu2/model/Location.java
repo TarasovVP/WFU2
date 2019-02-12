@@ -7,7 +7,6 @@ public class Location {
     private ArrayList<String> listCountries = new ArrayList<>();
     private ArrayList<Integer> listId = new ArrayList<>();
     private int count;
-    private String cityRU;
 
 
 
@@ -43,12 +42,5 @@ public class Location {
         listCountries.add(userCountry);
     }
 
-    String getCityRU() {
-        return cityRU;
-    }
-
-    void setCityRU(String cityRU) {
-        this.cityRU = cityRU;
-    }
 
 }
