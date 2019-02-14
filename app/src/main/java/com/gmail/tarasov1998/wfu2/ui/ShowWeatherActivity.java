@@ -26,19 +26,23 @@
     import butterknife.ButterKnife;
 
 
-    public class ActivityShowWeather extends AppCompatActivity {
+    public class ShowWeatherActivity extends AppCompatActivity {
 
+        private static final int NUMBER_OF_COLUMNS = 5;
+        private static final int FIRST_COLUMN = 1;
+
+        private String userCity;
+        private int id;
+        private LocalDateTime date = LocalDateTime.now();
 
         ArrayList<String> temperatureHours;
         ArrayList<String> time;
         ArrayList<Integer> weatherIcon;
 
-        RecycleViewAdapter adapter;
+
+        @BindView(R.id.recycleView)
         RecyclerView recyclerView;
-
-        private String userCity;
-        private int id;
-
+        RecycleViewAdapter adapter;
 
         @BindView(R.id.cityShowWeather)
         TextView cityShow;
@@ -49,18 +53,10 @@
         @BindView(R.id.weatherShowWeather)
         ImageView Weather;
 
-
-        private LocalDateTime date = LocalDateTime.now();
-
-        private static final int NUMBER_OF_COLUMNS = 5;
-        private static final int FIRST_COLUMN = 1;
-
-
-
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_show_weather);
+            setContentView(R.layout.show_weather_activity);
             ButterKnife.bind(this);
 
             Intent intent = getIntent();
@@ -82,7 +78,7 @@
         }
 
         public boolean onOptionsItemSelected(MenuItem item) {
-            Intent intent = new Intent(this, ActivityStart.class);
+            Intent intent = new Intent(this, StartActivity.class);
             startActivity(intent);
 
             return super.onOptionsItemSelected(item);
@@ -133,12 +129,10 @@
                     setList(time, weather);
 
 
-                    recyclerView = findViewById(R.id.recycleView);
-
                     initAdapter();
 
                 } else {
-                    Intent intent = new Intent(getApplicationContext(), ActivityStart.class);
+                    Intent intent = new Intent(getApplicationContext(), StartActivity.class);
                     startActivity(intent);
                     Toast.makeText(getApplicationContext(), R.string.err_repeat, Toast.LENGTH_LONG).show();
 

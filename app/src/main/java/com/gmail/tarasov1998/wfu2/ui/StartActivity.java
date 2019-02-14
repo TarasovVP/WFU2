@@ -26,25 +26,26 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ActivityStart extends AppCompatActivity {
+public class StartActivity extends AppCompatActivity {
 
     List<String> countries;
     HashMap<String, Integer> setCities;
     Integer idCity;
-    ArrayAdapter<String> adapter;
     String city, country, countryName, cityName, userCity;
 
     @BindView(R.id.editTextStart)
     EditText editText;
     @BindView(R.id.buttonOkStart)
     Button ok;
+
     @BindView(R.id.listCitiesStart)
     ListView list;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
+        setContentView(R.layout.start_activity);
         ButterKnife.bind(this);
     }
 
@@ -87,10 +88,10 @@ public class ActivityStart extends AppCompatActivity {
 
             if (location == null) {
                 Toast.makeText(getApplicationContext(), R.string.err_repeat, Toast.LENGTH_LONG).show();
-                } else {
-                if (location.getCount() == 0){
+            } else {
+                if (location.getCount() == 0) {
                     Toast.makeText(getApplicationContext(), R.string.err_nothing_found, Toast.LENGTH_LONG).show();
-                }else
+                } else {
                     setCities = new HashMap<>();
                     setHash(setCities, location);
                     countries = new ArrayList<>(setCities.keySet());
@@ -105,21 +106,20 @@ public class ActivityStart extends AppCompatActivity {
                             country = countries.get(position);
                             idCity = setCities.get(country);
 
-                            Intent intent = new Intent(getBaseContext(), ActivityShowWeather.class);
+                            Intent intent = new Intent(getBaseContext(), ShowWeatherActivity.class);
                             Bundle extras = new Bundle();
                             userCity = city + ", " + country;
                             extras.putInt("id", idCity);
                             extras.putString("userCity", userCity);
                             intent.putExtras(extras);
                             startActivity(intent);
-
-
                         }
-                    });
 
+
+                    });
+                }
             }
         }
-
 
 
         void setHash(HashMap<String, Integer> hashList, Location location) {

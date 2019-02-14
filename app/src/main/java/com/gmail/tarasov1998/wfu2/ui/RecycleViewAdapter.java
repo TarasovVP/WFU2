@@ -18,37 +18,12 @@ import butterknife.ButterKnife;
 
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.ViewHolder> {
 
+    private static final int NUMBER = 5;
+
     private List<String> temperData;
     private List<Integer> weatherData;
     private List<String> timeData;
     private LayoutInflater mInflater;
-
-    private static final int NUMBER = 5;
-
-
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.tempShowWeather)
-        TextView temper;
-        @BindView(R.id.timeShowWeather)
-        TextView time;
-        @BindView(R.id.weatherIconShowWeather)
-        ImageView weatherIcon;
-
-        ViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-
-        }
-
-    }
-
-
-    RecycleViewAdapter(Context context, List<String> temper, List<Integer> weatherIcon, List<String> time) {
-        this.mInflater = LayoutInflater.from(context);
-        this.temperData = temper;
-        this.weatherData = weatherIcon;
-        this.timeData = time;
-    }
 
 
     @NonNull
@@ -74,6 +49,27 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         return NUMBER;
 
     }
+    RecycleViewAdapter(Context context, List<String> temper, List<Integer> weatherIcon, List<String> time) {
+        this.mInflater = LayoutInflater.from(context);
+        this.temperData = temper;
+        this.weatherData = weatherIcon;
+        this.timeData = time;
+    }
 
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.tempShowWeather)
+        TextView temper;
+        @BindView(R.id.timeShowWeather)
+        TextView time;
+        @BindView(R.id.weatherIconShowWeather)
+        ImageView weatherIcon;
+
+        ViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+
+        }
+
+    }
 
 }

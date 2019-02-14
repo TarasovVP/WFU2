@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:padding="1dp"
     android:orientation="vertical"
-    tools:context=".ui.ActivityShowWeather">
+    tools:context=".ui.ShowWeatherActivity">
 
 
     <TextView
