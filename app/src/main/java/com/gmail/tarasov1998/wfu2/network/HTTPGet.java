@@ -13,14 +13,6 @@ public class HTTPGet {
     private static final String PARAM = "&type=like&sort=population&cnt=30";
     private static final String BASE_URL = "http://openweathermap.org/data/2.5/forecast?q=";
 
-    public String getLocationData(String location){
-        return httpget(FIND_URL + location + PARAM + KEY);
-    }
-
-    public String getWeatherData(Integer request){
-        return httpget(BASE_URL + request + KEY);
-    }
-
     private String httpget(String data) {
         HttpURLConnection con = null;
         StringBuffer buffer = null;
@@ -51,5 +43,11 @@ public class HTTPGet {
 
     }
 
+    public String getLocationData(String location){
+        return httpget(FIND_URL + location + PARAM + KEY);
+    }
 
+    public String getWeatherData(Integer request){
+        return httpget(BASE_URL + request + KEY);
+    }
 }
